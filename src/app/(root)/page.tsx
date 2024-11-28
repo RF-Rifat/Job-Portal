@@ -1,13 +1,7 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-
-
-import Categories from "./components/Home/Categories";
-import Companies from "./components/Home/Companies";
-import FeaturedCities from "./components/Home/FeaturedCities";
-import FeaturedJobs from "./components/Home/FeaturedJobs";
 import Hero from "./components/Home/Hero";
-import Newsletter from "./components/Home/Newsletter";
+import Home from "./components/Home/Index";
 
 const page = () => {
   return (
@@ -15,11 +9,9 @@ const page = () => {
       <Header />
       <main>
         <Hero />
-        <Categories />
-        <FeaturedJobs />
-        <Companies />
-        <FeaturedCities />
-        <Newsletter />
+        <Home/>
+        {/* <Categories />
+        <Newsletter /> */}
       </main>
       <Footer />
     </div>
