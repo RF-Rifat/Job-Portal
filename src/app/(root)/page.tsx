@@ -1,13 +1,13 @@
 import Footer from "./components/Footer";
-import Header from "./components/navbar/Header";
+import Header from "./navbar/Header";
 
 
-import Categories from "./components/Home/Categories";
-import Companies from "./components/Home/Companies";
-import FeaturedCities from "./components/Home/FeaturedCities";
-import FeaturedJobs from "./components/Home/FeaturedJobs";
-import Hero from "./components/Home/Hero";
-import Newsletter from "./components/Home/Newsletter";
+import Categories from "./Home/Categories";
+import Companies from "./Home/Companies";
+import FeaturedCities from "./Home/FeaturedCities";
+import FeaturedJobs from "./Home/FeaturedJobs";
+import Hero from "./Home/hero/Hero";
+import Newsletter from "./Home/Newsletter";
 
 const page = () => {
   return (
