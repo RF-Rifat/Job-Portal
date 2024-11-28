@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, MapPin, Briefcase } from 'lucide-react'
+import { Search, Briefcase } from 'lucide-react'
 import { Input } from "@/components/ui/input"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
