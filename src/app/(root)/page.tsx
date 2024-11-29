@@ -1,16 +1,15 @@
-import { BackgroundPatterns } from "@/components/ui/background-patterns";
+
 import Footer from "./components/Footer";
-import Hero from "./Home/hero/Hero";
+import HeroLayout from "./Home/hero/HeroLayout";
 import Home from "./Home/Index";
 import Header from "./navbar/Header";
 
 const page = () => {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark">
-      <BackgroundPatterns />
       <Header />
       <main>
-        <Hero />
+        <HeroLayout />
         <Home />
         {/* <Categories />
         <Newsletter /> */}
