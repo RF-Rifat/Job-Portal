@@ -3,6 +3,24 @@ import { motion } from "framer-motion";
 const FloatingIcons = () => {
   return (
     <div className="hidden md:block">
+      {/* Animated Images */}
+      <motion.img
+        src="/home/job.png"
+        alt="Job Icon"
+        className="absolute size-36 opacity-5 z-30"
+        style={{ bottom: "10%", left: "10%" }}
+        animate={{
+          x: [0, 30, -30, 0],
+          y: [0, -20, 20, 0],
+          transition: {
+            duration: 5,
+            repeat: Infinity,
+            repeatType: "mirror", // Valid string literal
+            ease: "easeInOut",
+          },
+        }}
+      />
+
       <motion.img
         src="/home/search.png"
         alt="Search Icon"

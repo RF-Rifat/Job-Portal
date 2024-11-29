@@ -1,3 +1,4 @@
+import { H1 } from '@/components/ui/typography'
 import { Briefcase, HardHat, Headphones, PieChart } from 'lucide-react'
 
 const categories = [
@@ -29,7 +30,7 @@ export default function Categories() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-h2 text-textPrimary-light dark:text-textPrimary-dark">
-            Search by Category
+           <H1>Search by Category</H1> 
           </h2>
           <a href="#" className="text-primary dark:text-primary-dark text-bodySmall">
             All Categories →

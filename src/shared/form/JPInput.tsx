@@ -31,15 +31,9 @@ const JPInput = ({
             autoComplete="off"
             placeholder={placeholder}
             className={`
-              ${className}
-              ${
-                theme === "dark"
-                  ? "bg-[#fff] shadow placeholder:text-[#8f8f8f] placeholder:text-sm border-none hover:bg-[#f7f7f7] focus-within:bg-[#fff] text-[black]"
-                  : ""
-              }
-              !text-[15px]
-              p-6 
-              pl-3
+              ${className} p-6  pl-5 text-sm md:text-lg   w-full border placeholder:text-gray-400 text-black border-gray-200 bg-white
+              
+              
             `}
             {...field}
             type={type}

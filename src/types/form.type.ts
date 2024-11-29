@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SubmitHandler, FieldValues } from "react-hook-form";
 
 export type FormSubmitHandler = SubmitHandler<FieldValues>;

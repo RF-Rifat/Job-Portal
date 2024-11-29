@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { Briefcase } from "lucide-react";
-import { Navbar } from "./Navbar";
+import { Navbar } from "../Navbar";
 import { AuthButtons } from "./AuthButtons";
 
 export default function Header() {
