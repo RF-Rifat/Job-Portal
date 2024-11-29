@@ -1,11 +1,11 @@
+import BackgroundPatterns from "@/components/ui/BackgroundPatterns";
 import HeroLayout from "./Home/hero/HeroLayout";
 import Home from "./Home/Index";
 
-
 const page = () => {
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark">
-      
+    <div className="min-h-screen bg-background-light">
+      <BackgroundPatterns />
       <main>
         <HeroLayout />
         <Home />
