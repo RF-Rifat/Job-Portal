@@ -11,7 +11,9 @@ export default function BackgroundPatterns() {
       <div
         className="absolute -left-[10%] -bottom-[10%] h-[500px] w-[500px] rounded-full bg-secondary/10 blur-3xl"
         aria-hidden="true"
-      />
+          />
+          
+          
     </div>
   );
 }
