@@ -1,7 +1,7 @@
 
 const page = () => {
   return (
-    <section>
+    <section className="min-h-screen">
       Job seeker profile
     </section>
   );
