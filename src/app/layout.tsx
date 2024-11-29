@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Merriweather, Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
-import LenisScroll from "@/context/SmoothScroll";
+import ChatBot from "@/components/shared/ChatBot";
+
 
 const merriweather = Merriweather({
   subsets: ['latin'],
@@ -33,7 +34,7 @@ export default function RootLayout({
       <body
         className={`${merriweather.variable} ${montserrat.variable} antialiased`}
       >
-        <LenisScroll/>
+        <ChatBot />
         <Providers>{children}</Providers>
       </body>
     </html>
