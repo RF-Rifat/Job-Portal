@@ -1,8 +1,5 @@
-
-import Footer from "./components/Footer";
 import HeroLayout from "./Home/hero/HeroLayout";
 import Home from "./Home/Index";
-
 
 
 const page = () => {
