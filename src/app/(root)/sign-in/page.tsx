@@ -3,19 +3,30 @@
 import Link from "next/link";
 import JPForm from "@/shared/form/JPForm";
 import JPInput from "@/shared/form/JPInput";
-import Image from "next/image";
+import { useState } from "react";
+import SigninVector from "./_components/SigninVector";
+import { Eye, EyeClosed } from "lucide-react";
 
 const SignIn = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const onSubmit = (data: any) => {
     console.log(data);
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className="flex justify-center">
-      <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="mt-11 md:mt-0 md:flex justify-center h-screen items-center gap-6 overflow-hidden">
+      <SigninVector />
+      <div className="flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
-          <div className=" mb-6 space-y-1">
-            <h1 className="text-4xl font-bold text-gray-900">Welcome back</h1>
+          <div className="mb-6 space-y-1">
+            <h1 className="text-4xl font-bold text-gray-700 pb-1">
+              Welcome back
+            </h1>
             <p className="text-gray-500 text-lg">
               Sign in to your account to access job opportunities
             </p>
@@ -25,6 +36,7 @@ const SignIn = () => {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <JPInput
+                    className="rounded-full"
                     name="email"
                     label="Email"
                     placeholder="Enter your email"
@@ -32,13 +44,25 @@ const SignIn = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <div className="items-center justify-between">
+                  <div className="relative">
                     <JPInput
+                      className="rounded-full"
                       name="password"
                       label="Password"
                       placeholder="Enter your password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                     />
+                    <button
+                      type="button"
+                      onClick={togglePasswordVisibility}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                    >
+                      {showPassword ? (
+                        <Eye className="text-gray-500" size={18} />
+                      ) : (
+                        <EyeClosed className="text-gray-500" size={18} />
+                      )}
+                    </button>
                   </div>
                 </div>
                 <div className="flex justify-end">
@@ -55,14 +79,14 @@ const SignIn = () => {
                     I agree to the{" "}
                     <Link
                       href="/terms"
-                      className="text-blue-600 hover:underline"
+                      className="text-primary hover:underline"
                     >
                       T&C
                     </Link>{" "}
                     and{" "}
                     <Link
                       href="/privacy"
-                      className="text-blue-600 hover:underline"
+                      className="text-primary hover:underline"
                     >
                       Privacy Policy
                     </Link>
@@ -71,7 +95,7 @@ const SignIn = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200"
+                  className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200"
                 >
                   Sign In
                 </button>
@@ -79,21 +103,12 @@ const SignIn = () => {
             </JPForm>
             <div className="mt-4 text-center text-sm text-gray-500">
               Don&apos;t have an account?{" "}
-              <Link href="/sign-up" className="text-blue-600 hover:underline">
+              <Link href="/sign-up" className="text-primary hover:underline">
                 Create one now
               </Link>
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <Image
-          width={500}
-          height={500}
-          alt="sign in"
-          src={"/auth/sign-in.svg"}
-          className="hidden md:block"
-        />
       </div>
     </div>
   );
