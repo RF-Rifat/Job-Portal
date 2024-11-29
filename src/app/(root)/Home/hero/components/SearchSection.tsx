@@ -9,39 +9,65 @@ import HeroSearchBar from "./HeroSearchBar";
 const SearchSection = () => {
   const router = useRouter();
   const [jobSearch, setJobSearch] = useState("");
-  const [gigSearch, setGigSearch] = useState("");
+  const [talentSearch, setTalentSearch] = useState("");
+
+  // Simulated user state
+  const user = {
+    role: "company", 
+  };
 
   const handleSearch = () => {
-    let searchQuery = "/search?";
+    let searchQuery = "/";
     if (jobSearch.trim()) {
       searchQuery += `job=${encodeURIComponent(jobSearch)}`;
     }
-    if (gigSearch.trim()) {
+    if (talentSearch.trim()) {
       if (searchQuery.length > 7) searchQuery += "&";
-      searchQuery += `gig=${encodeURIComponent(gigSearch)}`;
+      searchQuery += `talent=${encodeURIComponent(talentSearch)}`;
     }
-
-    // Navigate with dynamic query parameters
     router.push(searchQuery);
   };
 
   return (
     <div className="space-y-4 w-full">
       <div className="flex flex-col md:flex-row gap-4">
-        <HeroSearchBar
-          type="job"
-          placeholder="Search for jobs..."
-          value={jobSearch}
-          onChange={setJobSearch}
-          className="sm:flex-[2]"
-        />
-        <HeroSearchBar
-          type="gig"
-          placeholder="Search for gigs..."
-          value={gigSearch}
-          onChange={setGigSearch}
-          className="sm:flex-[2]"
-        />
+        {/* Conditionally render search inputs */}
+        {!user?.role && (
+          <>
+            <HeroSearchBar
+              placeholder="Search for jobs..."
+              value={jobSearch}
+              onChange={setJobSearch}
+              className="sm:flex-[2]"
+            />
+            <HeroSearchBar
+              placeholder="Search for talents..."
+              value={talentSearch}
+              onChange={setTalentSearch}
+              className="sm:flex-[2]"
+            />
+          </>
+        )}
+
+        {user?.role === "company" && (
+          <HeroSearchBar
+            placeholder="Search for talents..."
+            value={talentSearch}
+            onChange={setTalentSearch}
+            className="sm:flex-[2]"
+          />
+        )}
+
+        {user?.role === "jobseeker" && (
+          <HeroSearchBar
+            placeholder="Search for jobs..."
+            value={jobSearch}
+            onChange={setJobSearch}
+            className="sm:flex-[2]"
+          />
+        )}
+
+        {/* Search Button */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

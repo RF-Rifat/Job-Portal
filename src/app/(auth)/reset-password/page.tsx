@@ -14,7 +14,8 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const onSubmitEmail = (data: any) => {
-    console.log(data);
+    console.log({data});
+    console.log({email,otp,newPassword, confirmPassword});
     // Simulate checking if the email is valid
     setStep(2);
     // Send OTP email (Mocked)

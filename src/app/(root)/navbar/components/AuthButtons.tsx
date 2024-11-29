@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 export function AuthButtons() {
-  const user = true;
+  const user = {
+    role:"company"
+  };
   const router = useRouter();
 
   return (

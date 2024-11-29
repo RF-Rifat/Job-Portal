@@ -18,11 +18,20 @@ const ProfileHeader = ({ data }: { data: any }) => (
     <div className="flex flex-1 flex-col gap-2">
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="font-heading text-2xl font-bold">{data.jobTitle}</h1>
+          <div className="flex gap-1 items-center">
+            <h1 className="font-heading text-2xl font-bold">{data.jobTitle}</h1>
+            <img
+              src="/profile/blue_tick.svg"
+              className=" size-4 md:size-4"
+              alt=""
+            />
+          </div>
           <p className="text-muted-foreground">{data.experienceLevel}</p>
         </div>
         <div className="flex items-center gap-1">
-          <span className="text-xl font-bold">{data.profileCompletionPercentage}%</span>
+          <span className="text-xl font-bold">
+            {data.profileCompletionPercentage}%
+          </span>
           <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
         </div>
       </div>

@@ -7,11 +7,26 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { USER_ROLE } from "@/app/constants";
+
+const user = {
+  role: "company",
+};
 
 export function Navbar() {
   return (
     <nav className="hidden items-center gap-6 md:flex">
       {/* Dropdown Menu: Resources */}
+
+      {(!user.role || user.role === USER_ROLE.COMPANY) && (
+        <Link
+          href="/pricing"
+          className="text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+        >
+          Pricing
+        </Link>
+      )}
+
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
           Resources
@@ -38,29 +53,33 @@ export function Navbar() {
       >
         Messages
       </Link>
-      <Link
-        href="/pricing"
-        className="text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
-      >
-        Pricing
-      </Link>
 
       {/* Button: Find Jobs */}
-      <Button variant="secondary" size="sm" asChild>
-        <Link href="/jobs">Find Jobs</Link>
-      </Button>
+      {user.role === USER_ROLE.jobseeker ? (
+        <Button variant="secondary" size="sm" asChild>
+          <Link href="/jobs">Find Jobs</Link>
+        </Button>
+      ) : (
+        user.role === USER_ROLE.COMPANY && (
+          <Button variant="secondary" size="sm" asChild>
+            <Link href="/talents">Find Talents</Link>
+          </Button>
+        )
+      )}
 
       {/* Dropdown Menu: Post a Job */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            size="sm"
-            className="gap-1 border bg-transparent text-primary hover:text-white"
-          >
-            Post A Job
-            <ChevronDown className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
+        {user.role && user.role === USER_ROLE.COMPANY && (
+          <DropdownMenuTrigger asChild>
+            <Button
+              size="sm"
+              className="gap-1 border bg-transparent text-primary hover:text-white"
+            >
+              Post A Job
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+        )}
         <DropdownMenuContent align="end" className="w-48">
           <DropdownMenuItem asChild>
             <Link href="/post-job" className="w-full">

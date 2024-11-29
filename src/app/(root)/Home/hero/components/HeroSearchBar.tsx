@@ -5,13 +5,11 @@ import { cn } from "@/lib/utils";
 
 // SearchBar Component
 const HeroSearchBar = ({
-  type,
   placeholder,
   value,
   onChange,
   className,
 }: {
-  type: "job" | "gig";
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
@@ -19,11 +17,7 @@ const HeroSearchBar = ({
 }) => (
   <FadeUp className={cn("relative flex-1 w-full", className)}>
     <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-      {type === "job" ? (
-        <Briefcase className="w-6 h-5 text-gray-400" />
-      ) : (
-        <Search className="w-6 h-5 text-gray-400" />
-      )}
+      <Search className="w-6 h-6 text-gray-400" />
     </div>
     <Input
       type="text"
