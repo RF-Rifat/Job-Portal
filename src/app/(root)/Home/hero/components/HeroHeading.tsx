@@ -11,18 +11,16 @@ export const HeroHeading = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Find Your Perfect
-          <span className="text-primary"> Career Path</span>
+          Largest Skilled Database For
+          <span className="text-primary"> Bangladeshi Job Seekers</span>
         </motion.h1>
         <FadeUp>
-          <p className="text-lg">
-            Discover opportunities that match your skills and interests. Whether
-            you&apos;re looking for a full-time job or freelance gigs.
+          <p className="text-lg md:text-lg lg:text-xl">
+            50% Cheaper Compare with Other Platforms For Employers .No Middleman
+            Fees, No Service Charge! Hire Direct and Cancel When You are Done.
           </p>
         </FadeUp>
       </div>
     </>
   );
 };
-
-
