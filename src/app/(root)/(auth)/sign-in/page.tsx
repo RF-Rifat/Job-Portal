@@ -6,11 +6,19 @@ import JPInput from "@/shared/form/JPInput";
 import { useState } from "react";
 import SigninVector from "./_components/SigninVector";
 import { Eye, EyeClosed } from "lucide-react";
+import Checkbox from "@/shared/form-fields/Checkbox";
+import AuthRedirect from "../shared/AuthRedirect";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [termsChecked, setTermsChecked] = useState(false);
 
   const onSubmit = (data: any) => {
+    if (!termsChecked) {
+      alert("You must agree to the terms and conditions to sign up.");
+      return;
+    }
+
     console.log(data);
   };
 
@@ -74,23 +82,22 @@ const SignIn = () => {
                   </Link>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <JPInput type="checkbox" name="terms" />
-                  <label htmlFor="terms" className="text-sm text-gray-500">
-                    I agree to the{" "}
-                    <Link
-                      href="/terms"
-                      className="text-primary hover:underline"
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      name="terms"
+                      checked={termsChecked}
+                      onChange={(e) => setTermsChecked(e.target.checked)}
                     >
-                      T&C
-                    </Link>{" "}
-                    and{" "}
-                    <Link
-                      href="/privacy"
-                      className="text-primary hover:underline"
-                    >
-                      Privacy Policy
-                    </Link>
-                  </label>
+                      I agree to the{" "}
+                      <Link className="text-primary" href={"/terms"}>
+                        T&C{" "}
+                      </Link>{" "}
+                      and{" "}
+                      <Link className="text-primary" href={"/privacy"}>
+                        Privacy Policy
+                      </Link>
+                    </Checkbox>
+                  </div>
                 </div>
 
                 <button
@@ -101,12 +108,11 @@ const SignIn = () => {
                 </button>
               </div>
             </JPForm>
-            <div className="mt-4 text-center text-sm text-gray-500">
-              Don&apos;t have an account?{" "}
-              <Link href="/sign-up" className="text-primary hover:underline">
-                Create one now
-              </Link>
-            </div>
+            <AuthRedirect
+              message="Already have an account?"
+              linkText="Sign in now"
+              href="/sign-up"
+            />
           </div>
         </div>
       </div>
