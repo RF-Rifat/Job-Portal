@@ -16,7 +16,6 @@ const JPInput = ({
   placeholder,
   onChange
 }: Iprops) => {
-  const { theme } = { theme: "dark" };
   const {
     formState: { errors },
   } = useFormContext();

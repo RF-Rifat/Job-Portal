@@ -1,4 +1,4 @@
-import { Search, Briefcase } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import FadeUp from "@/shared/animation/FadeUp";
 import { cn } from "@/lib/utils";

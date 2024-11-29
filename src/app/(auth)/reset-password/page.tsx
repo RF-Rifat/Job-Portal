@@ -1,6 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
-import Link from "next/link";
 import JPForm from "@/shared/form/JPForm";
 import JPInput from "@/shared/form/JPInput";
 import Image from "next/image";

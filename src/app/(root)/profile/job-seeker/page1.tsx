@@ -1,7 +1,4 @@
-
-
 "use client";
-
 import ProfileHeader from "./compoents/ProfileHeader";
 import ContactInfo from "./compoents/ContactInfo";
 import Skills from "./compoents/Skills";

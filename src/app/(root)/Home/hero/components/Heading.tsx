@@ -18,7 +18,7 @@ const Heading = () => {
         <FadeUp>
           <p className="text-lg">
             Discover opportunities that match your skills and interests. Whether
-            you're looking for a full-time job or freelance gigs.
+            you&apos;re looking for a full-time job or freelance gigs.
           </p>
         </FadeUp>
       </div>
