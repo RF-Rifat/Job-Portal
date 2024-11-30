@@ -5,6 +5,7 @@ import { Briefcase } from "lucide-react";
 import { Navbar } from "../Navbar";
 import { AuthButtons } from "./AuthButtons";
 import { Container } from "@/components/ui/container";
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -16,10 +17,7 @@ export default function Header() {
             href="/"
             className="flex items-center gap-2 transition-colors hover:opacity-90"
           >
-            <Briefcase className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold text-foreground">
-              Oneline Jobs
-            </span>
+           <Image src="/logo/logo.png" className="h-10 w-44" alt="logo" width={500} height={500} />
           </Link>
           {/* Navbar */}
           <Navbar />
