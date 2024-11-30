@@ -27,13 +27,13 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 // import { RootState } from "../store";
-import { Tags } from ".";
-import { RootState } from "../store";
-import { setUser } from "../features/auth/auth.slice";
+
+import { RootState } from "../store/store";
+import { setUser } from "../features/auth/authSlice";
+import { tags } from ".";
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: "https://rest-os-server-lyart.vercel.app/api/v1",
-  baseUrl: "https://rest-os-server-lyart.vercel.app/api/v1",
+  baseUrl: "https://onlinestaff-backend.vercel.app/api/v1/",
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
@@ -60,7 +60,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
       // if token access token has any issue get new accessToken
       //  using refresh token and set it to the local state
       const res = await fetch(
-        `${import.meta.env.VITE_BACKENT_URL}/auths/refresh-token`,
+        `https://onlinestaff-backend.vercel.app/api/v1/auths/refresh-token`,
         {
           method: "POST",
           credentials: "include",
@@ -91,6 +91,6 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefreshToken,
   endpoints: () => ({}),
-  tagTypes: Tags,
+  tagTypes: tags,
 });
 

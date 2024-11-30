@@ -8,6 +8,7 @@ import SigninVector from "./_components/SigninVector";
 import { Eye, EyeClosed } from "lucide-react";
 import Checkbox from "@/shared/form-fields/Checkbox";
 import AuthRedirect from "../shared/AuthRedirect";
+import PrimaryButton from "@/shared/ui/PrimaryButton";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -40,8 +41,8 @@ const SignIn = () => {
             </p>
           </div>
           <div className="w-full">
-            <JPForm onSubmit={onSubmit} className="spay6">
-              <div className="space-y-4">
+            <JPForm onSubmit={onSubmit} >
+              <div className="space-y-6">
                 <div className="space-y-2">
                   <JPInput
                     className="rounded-full"
@@ -100,17 +101,14 @@ const SignIn = () => {
                   </div>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200"
-                >
-                  Sign In
-                </button>
+                <div>
+                <PrimaryButton type="submit" text="Sign in" className="rounded-full h-11 mt-4" />
+                </div>
               </div>
             </JPForm>
             <AuthRedirect
-              message="Already have an account?"
-              linkText="Sign in now"
+              message="Do not have account?"
+              linkText="Sign up now"
               href="/sign-up"
             />
           </div>

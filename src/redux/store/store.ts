@@ -14,17 +14,14 @@
 // export type RootState = ReturnType<typeof store.getState>;
 // export type AppDispatch = typeof store.dispatch;
 
-
-
-
 import { configureStore } from "@reduxjs/toolkit";
 
 // api
 import { baseApi } from "../api/baseApi";
-
+import authApi from "../features/auth/authApi";
 
 // Reducer
-
+import authReducer from "../features/auth/authSlice";
 
 // redux persisi
 import {
@@ -58,18 +55,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(
-      foodApi.middleware,
-      userApi.middleware,
-      orderApi.middleware,
-      commentApi.middleware,
-      replyApi.middleware,
-      voteApi.middleware,
-      saveBlogApi.middleware,
-      profileApi.middleware,
-      searchApi.middleware,
-      authApi.middleware
-    ),
+    }).concat(authApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

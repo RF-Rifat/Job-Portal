@@ -11,6 +11,8 @@ import JPInput from "@/shared/form/JPInput";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import AuthFormHeader from "../shared/AuthFormHeader";
 import AuthRedirect from "../shared/AuthRedirect";
+import { useSignupMutation } from "@/redux/features/auth/authApi";
+import { FormSubmitHandler } from "react-hook-form";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,12 +22,15 @@ const SignUp = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const onSubmit = (data: any) => {
+  // ---------- API call  --------------
+  const [registerUser] = useSignupMutation();
+
+  // ---------- Submit the from --------------
+  const onSignupSubmit = async (data: any) => {
     if (data.password !== data.confirmPassword) {
       alert("Passwords do not match!");
       return;
@@ -36,11 +41,18 @@ const SignUp = () => {
       return;
     }
     delete data.confirmPassword;
-    console.log(data);
+    const res = await registerUser(data);
+
+    console.log(res);
+
+    try {
+    } catch (error: any) {
+      console.log(error.message);
+    }
   };
 
   return (
-    <div className="md:flex justify-center">
+    <div className="lg:flex justify-center items-center relative">
       <div className="min-h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
           <AuthFormHeader
@@ -49,19 +61,21 @@ const SignUp = () => {
           />
 
           <div className="w-full">
-            <JPForm onSubmit={onSubmit} className="spay6">
-              <div className="space-y-4">
+            <JPForm onSubmit={onSignupSubmit}>
+              <div className="space-y-6">
                 <JPInput
-                  name="fullname"
+                  name="name"
                   label="Full Name"
-                  placeholder="Enter your full name"
+                  placeholder="Enter your name"
                   type="text"
+                  className="rounded-full"
                 />
                 <JPInput
                   name="email"
                   label="Email"
                   placeholder="Enter your email"
                   type="email"
+                  className="rounded-full"
                 />
 
                 {/* Password Field */}
@@ -71,6 +85,7 @@ const SignUp = () => {
                     label="Password"
                     placeholder="Enter your password"
                     type={showPassword ? "text" : "password"}
+                    className="rounded-full"
                   />
                   <PasswordToggle
                     showPassword={showPassword}
@@ -85,6 +100,7 @@ const SignUp = () => {
                     label="Confirm Password"
                     placeholder="Confirm your password"
                     type={showConfirmPassword ? "text" : "password"}
+                    className="rounded-full"
                   />
                   <PasswordToggle
                     showPassword={showConfirmPassword}
@@ -110,7 +126,13 @@ const SignUp = () => {
                   </Checkbox>
                 </div>
                 {/* Submit the form */}
-                <PrimaryButton type="submit" text="Sign up" />
+                <div>
+                  <PrimaryButton
+                    type="submit"
+                    text="Sign up"
+                    className="rounded-full h-11 mt-4"
+                  />
+                </div>
               </div>
             </JPForm>
             <AuthRedirect

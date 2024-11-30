@@ -19,7 +19,7 @@ const SignupVector = () => {
           height={800}
           alt="sign in"
           src={"/shared/blob.svg"}
-          className="block fixed  inset-0 top-11 rotate-12 -left-11 size-[1000px] -z-10"
+          className="block fixed  inset-0 top-1 rotate-12 -left-44  size-[1000px] -z-10"
         />
       </div>
     </>

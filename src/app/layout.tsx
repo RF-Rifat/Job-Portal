@@ -3,21 +3,23 @@ import { Merriweather, Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
 import ChatBot from "@/components/shared/ChatBot";
-
+import { persistor } from "@/redux/store/store";
+import { PersistGate } from "redux-persist/integration/react";
+import AppContext from "@/context/AppContext";
 
 const merriweather = Merriweather({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-merriweather',
-  weight: ['300', '400', '700', '900'],
-})
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-merriweather",
+  weight: ["300", "400", "700", "900"],
+});
 
 const montserrat = Montserrat({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-montserrat',
-  weight: ['400', '500', '600', '700'],
-})
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -34,8 +36,10 @@ export default function RootLayout({
       <body
         className={`${merriweather.variable} ${montserrat.variable} antialiased`}
       >
-        <ChatBot />
-        <Providers>{children}</Providers>
+        <AppContext>
+          <ChatBot />
+          <Providers>{children}</Providers>
+        </AppContext>
       </body>
     </html>
   );

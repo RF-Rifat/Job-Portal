@@ -12,10 +12,9 @@ const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     signup: build.mutation({
       query: (signupdata: any) => ({
-        url: "/auth/borrower/register",
+        url: "/auth/register/company",
         method: "POST",
         data: signupdata,
-        contentType: "multipart/form-data",
       }),
     }),
     signin: build.mutation({
@@ -89,3 +88,5 @@ export const {
   useChangeEmailMutation,
   useSendVerifictionEmailMutation,
 } = authApi;
+
+export default authApi;
