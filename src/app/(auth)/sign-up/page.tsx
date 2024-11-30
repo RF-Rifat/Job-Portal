@@ -12,7 +12,8 @@ import PrimaryButton from "@/shared/ui/PrimaryButton";
 import AuthFormHeader from "../shared/AuthFormHeader";
 import AuthRedirect from "../shared/AuthRedirect";
 import { useSignupMutation } from "@/redux/features/auth/authApi";
-import { FormSubmitHandler } from "react-hook-form";
+
+
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
