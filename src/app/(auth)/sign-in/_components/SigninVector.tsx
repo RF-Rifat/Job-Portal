@@ -9,7 +9,7 @@ const SigninVector = () => {
           height={500}
           alt="sign in"
           src={"/auth/signin.svg"}
-          className="hidden md:block"
+          className="hidden lg:block"
         />
       </div>
       <div>

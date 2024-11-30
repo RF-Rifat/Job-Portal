@@ -1,6 +1,5 @@
 "use client";
 
-import { Container } from "@/components/ui/container";
 import { H2, H3, Paragraph } from "@/components/ui/typography";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Star } from "lucide-react";

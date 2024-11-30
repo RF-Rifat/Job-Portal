@@ -9,26 +9,55 @@ import { Eye, EyeClosed } from "lucide-react";
 import Checkbox from "@/shared/form-fields/Checkbox";
 import AuthRedirect from "../shared/AuthRedirect";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
+import { toast } from "@/hooks/use-toast";
+import { useSigninMutation } from "@/redux/features/auth/authApi";
+import { useAppDispatch } from "@/redux/hook";
+import verifyToken from "@/helper/auth/VerifyToken";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
-
-  const onSubmit = (data: any) => {
-    if (!termsChecked) {
-      alert("You must agree to the terms and conditions to sign up.");
-      return;
-    }
-
-    console.log(data);
-  };
+  const [SigninAsUser] = useSigninMutation();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const onSignSubmit = async (data: any) => {
+    if (!termsChecked) {
+      toast({
+        title: "You must agree to the terms and conditions to sign up.",
+        duration: 2000,
+      });
+      return;
+    }
+
+    try {
+      const response: any = await SigninAsUser(data);
+
+      console.log(response);
+      if (response.data.success) {
+        const { accessToken } = response.data.data;
+        const decodedUser = verifyToken(accessToken);
+        // Set {user:"",token:""} in local state
+        dispatch(setUser({ user: decodedUser, token: accessToken }));
+        router.push("/");
+        toast({ title: "Successfully signed in", duration: 2000 });
+      }
+    } catch (error: any) {
+      toast({
+        title: error?.messaage || "Something went wrong",
+        duration: 2000,
+      });
+    }
+  };
+
   return (
-    <div className="mt-11 md:mt-0 md:flex justify-center h-screen items-center gap-6 overflow-hidden">
+    <div className="mt-11 md:mt-0 lg:flex justify-center h-screen items-center gap-6 overflow-hidden">
       <SigninVector />
       <div className="flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
@@ -41,7 +70,7 @@ const SignIn = () => {
             </p>
           </div>
           <div className="w-full">
-            <JPForm onSubmit={onSubmit} >
+            <JPForm onSubmit={onSignSubmit}>
               <div className="space-y-6">
                 <div className="space-y-2">
                   <JPInput
@@ -102,7 +131,11 @@ const SignIn = () => {
                 </div>
 
                 <div>
-                <PrimaryButton type="submit" text="Sign in" className="rounded-full h-11 mt-4" />
+                  <PrimaryButton
+                    type="submit"
+                    text="Sign in"
+                    className="rounded-full h-11 mt-4"
+                  />
                 </div>
               </div>
             </JPForm>
