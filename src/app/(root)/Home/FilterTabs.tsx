@@ -9,6 +9,7 @@ import {
   Globe,
   GraduationCap,
   Shield,
+  DollarSign,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -33,6 +34,10 @@ const filterCategories: Record<string, FilterCategory> = {
       { name: "Education", count: 312, href: "#" },
       { name: "Retail", count: 256, href: "#" },
       { name: "Construction", count: 198, href: "#" },
+      { name: "Automotive", count: 187, href: "#" },
+      { name: "Energy", count: 156, href: "#" },
+      { name: "Telecommunications", count: 234, href: "#" },
+      { name: "Media & Entertainment", count: 276, href: "#" },
     ],
   },
   role: {
@@ -45,6 +50,10 @@ const filterCategories: Record<string, FilterCategory> = {
       { name: "Product Designer", count: 389, href: "#" },
       { name: "Marketing Specialist", count: 345, href: "#" },
       { name: "HR Manager", count: 276, href: "#" },
+      { name: "Sales Representative", count: 423, href: "#" },
+      { name: "Customer Support", count: 312, href: "#" },
+      { name: "Business Analyst", count: 267, href: "#" },
+      { name: "Quality Assurance", count: 234, href: "#" },
     ],
   },
   location: {
@@ -57,6 +66,10 @@ const filterCategories: Record<string, FilterCategory> = {
       { name: "London", count: 398, href: "#" },
       { name: "Berlin", count: 312, href: "#" },
       { name: "Sydney", count: 276, href: "#" },
+      { name: "Paris", count: 234, href: "#" },
+      { name: "Tokyo", count: 267, href: "#" },
+      { name: "Singapore", count: 189, href: "#" },
+      { name: "Toronto", count: 212, href: "#" },
     ],
   },
   expertise: {
@@ -69,6 +82,10 @@ const filterCategories: Record<string, FilterCategory> = {
       { name: "Management", count: 276, href: "#" },
       { name: "Director", count: 189, href: "#" },
       { name: "Executive", count: 123, href: "#" },
+      { name: "Intern", count: 234, href: "#" },
+      { name: "Apprentice", count: 156, href: "#" },
+      { name: "Specialist", count: 287, href: "#" },
+      { name: "Expert Consultant", count: 98, href: "#" },
     ],
   },
   jobType: {
@@ -81,6 +98,10 @@ const filterCategories: Record<string, FilterCategory> = {
       { name: "Contract", count: 276, href: "#" },
       { name: "Freelance", count: 198, href: "#" },
       { name: "Temporary", count: 156, href: "#" },
+      { name: "Remote Full-Time", count: 423, href: "#" },
+      { name: "Hybrid", count: 312, href: "#" },
+      { name: "Seasonal", count: 187, href: "#" },
+      { name: "Volunteer", count: 98, href: "#" },
     ],
   },
   companySize: {
@@ -93,6 +114,26 @@ const filterCategories: Record<string, FilterCategory> = {
       { name: "501-1000 Employees", count: 276, href: "#" },
       { name: "1001-5000 Employees", count: 198, href: "#" },
       { name: "5000+ Employees", count: 123, href: "#" },
+      { name: "Startup (<10 Employees)", count: 234, href: "#" },
+      { name: "Mid-Market (201-1000)", count: 312, href: "#" },
+      { name: "Enterprise (5000+)", count: 189, href: "#" },
+      { name: "Small Business (10-50)", count: 267, href: "#" },
+    ],
+  },
+  compensation: {
+    icon: <DollarSign className="h-4 w-4" />,
+    label: "By Compensation",
+    subCategories: [
+      { name: "$0-$50K", count: 456, href: "#" },
+      { name: "$50K-$75K", count: 389, href: "#" },
+      { name: "$75K-$100K", count: 312, href: "#" },
+      { name: "$100K-$150K", count: 276, href: "#" },
+      { name: "$150K-$200K", count: 198, href: "#" },
+      { name: "$200K+", count: 123, href: "#" },
+      { name: "Equity Offered", count: 234, href: "#" },
+      { name: "Performance Bonus", count: 187, href: "#" },
+      { name: "Stock Options", count: 156, href: "#" },
+      { name: "Commission-Based", count: 98, href: "#" },
     ],
   },
 };
@@ -126,18 +167,24 @@ export function FilterTabs() {
     <Card className="overflow-hidden border-none bg-background/60 backdrop-blur-sm">
       <Tabs defaultValue="industry" className="w-full">
         <div className="flex items-center border-b px-4 py-2">
-          <TabsList className="inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1">
+          <TabsList className="grid w-full grid-cols-3 sm:grid-cols-4 md:grid-cols-6 h-auto gap-1 bg-muted p-1 rounded-lg">
             {Object.entries(filterCategories).map(([key, category]) => (
               <TabsTrigger
                 key={key}
                 value={key}
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-2 py-1.5 text-xs sm:text-sm md:text-sm font-medium 
+                transition-all duration-200 ease-in-out
+                hover:bg-accent hover:text-accent-foreground
+                data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+                disabled:pointer-events-none disabled:opacity-50"
               >
-                <span className="hidden sm:inline-flex sm:items-center sm:gap-2">
-                  {category.icon}
-                  {category.label}
-                </span>
-                <span className="sm:hidden">{category.icon}</span>
+                <div className="flex items-center justify-center gap-1">
+                  <span className=" hidden sm:inline-block">
+                    {category.icon}
+                  </span>
+                  <span className="flex sm:gap-2">{category.label}</span>
+                </div>
               </TabsTrigger>
             ))}
           </TabsList>

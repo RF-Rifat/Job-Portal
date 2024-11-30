@@ -43,18 +43,21 @@ const footerSections = [
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-secondary-foreground">
+    <footer className="border-t border-gray-200">
       <Container className="py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {footerSections.map((section) => (
             <div key={section.title}>
-              <Paragraph className="font-semibold mb-4">
+              <Paragraph className="font-semibold mb-4 text-gray-700">
                 {section.title}
               </Paragraph>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="hover:underline">
+                    <Link
+                      href={link.href}
+                      className="text-gray-600 hover:text-primary transition-colors duration-200"
+                    >
                       <Small>{link.label}</Small>
                     </Link>
                   </li>
@@ -63,9 +66,9 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-12 pt-8 border-t border-secondary-foreground/10">
-          <Small className="text-center block">
-            © {new Date().getFullYear()} Your Company Name. All rights reserved.
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <Small className="text-center block text-gray-500">
+            © {new Date().getFullYear()} Your onlinestaff. All rights reserved.
           </Small>
         </div>
       </Container>
