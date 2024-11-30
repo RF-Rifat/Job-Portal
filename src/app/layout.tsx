@@ -3,8 +3,6 @@ import { Merriweather, Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
 import ChatBot from "@/components/shared/ChatBot";
-import { persistor } from "@/redux/store/store";
-import { PersistGate } from "redux-persist/integration/react";
 import AppContext from "@/context/AppContext";
 
 const merriweather = Merriweather({
