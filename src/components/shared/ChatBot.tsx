@@ -117,7 +117,7 @@ export default function ChatBot() {
                     >
                       <Button
                         variant="outline"
-                        className="rounded-full border-purple-200 hover:bg-purple-50 hover:text-secondary"
+                        className="rounded-full border-green-200 hover:bg-green-50 hover:text-secondary"
                       >
                         {action}
                       </Button>
