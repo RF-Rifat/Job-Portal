@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { H2, Paragraph, Small } from "@/components/ui/typography";
+
 interface Job {
   title: string;
   company: string;
@@ -69,81 +70,86 @@ function JobCard({ job, className }: { job: Job; className?: string }) {
   return (
     <Card
       className={cn(
-        "w-[320px] hover:shadow-md transition-shadow duration-300",
+        "w-full max-w-[350px] mx-auto hover:shadow-lg transition-all duration-300 group",
         className
       )}
     >
-      <CardContent className="p-6">
-        <div className="space-y-4">
-          <div className="flex justify-between items-start">
-            <Badge
-              variant="secondary"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-            >
-              Actively hiring
-            </Badge>
-            <Image
-              src={job.logo}
-              alt={job.company}
-              width={48}
-              height={48}
-              className="object-contain rounded-md"
-            />
-          </div>
+      <CardContent className="p-4 sm:p-6 space-y-4">
+        {/* Header Section */}
+        <div className="flex justify-between items-start">
+          <Badge 
+            variant="secondary" 
+            className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+          >
+            Actively hiring
+          </Badge>
+          <Image
+            src={job.logo}
+            alt={job.company}
+            width={48}
+            height={48}
+            className="object-contain rounded-md group-hover:scale-105 transition-transform"
+          />
+        </div>
 
-          <div>
-            <Paragraph className="font-semibold text-lg text-foreground">
-              {job.title}
-            </Paragraph>
-            <Small className="text-muted-foreground mt-1">{job.company}</Small>
-          </div>
+        {/* Job Title and Company */}
+        <div>
+          <Paragraph className="font-semibold text-base sm:text-lg text-foreground group-hover:text-primary transition-colors">
+            {job.title}
+          </Paragraph>
+          <Small className="text-muted-foreground mt-1">{job.company}</Small>
+        </div>
 
-          <div className="flex flex-wrap gap-2">
+        {/* Job Type Badges */}
+        <div className="flex flex-wrap gap-2">
+          <Badge
+            variant="outline"
+            className="flex items-center gap-1 text-foreground text-xs sm:text-sm"
+          >
+            <Briefcase className="h-3 w-3" />
+            {job.type}
+          </Badge>
+          {job.remote && (
             <Badge
               variant="outline"
-              className="flex items-center gap-1 text-foreground"
+              className="flex items-center gap-1 text-foreground text-xs sm:text-sm"
             >
-              <Briefcase className="h-3 w-3" />
-              {job.type}
+              <Globe2 className="h-3 w-3" />
+              Remote
             </Badge>
-            {job.remote && (
-              <Badge
-                variant="outline"
-                className="flex items-center gap-1 text-foreground"
-              >
-                <Globe2 className="h-3 w-3" />
-                Remote
-              </Badge>
-            )}
-          </div>
+          )}
+        </div>
 
-          <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-            <Small className="text-muted-foreground">
-              {job.locations.join(", ")}
-            </Small>
-          </div>
+        {/* Location */}
+        <div className="flex items-center gap-2">
+          <MapPin className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+          <Small className="text-muted-foreground text-xs sm:text-sm truncate">
+            {job.locations.join(", ")}
+          </Small>
+        </div>
 
-          <div className="flex items-center gap-2">
-            <DollarSign className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-            <Small className="text-muted-foreground">{job.salary}</Small>
-          </div>
+        {/* Salary */}
+        <div className="flex items-center gap-2">
+          <DollarSign className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+          <Small className="text-muted-foreground text-xs sm:text-sm">
+            {job.salary}
+          </Small>
+        </div>
 
-          <div className="flex items-center justify-between pt-4 border-t border-border">
-            <Badge
-              variant="secondary"
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-colors"
-            >
-              Apply now
-            </Badge>
-            <a
-              href={job.link}
-              className="flex items-center gap-1 text-primary hover:text-primary/90 text-sm font-medium transition-colors"
-            >
-              View details
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
+        {/* Footer Section */}
+        <div className="flex items-center justify-between pt-4 border-t border-border">
+          <Badge
+            variant="secondary"
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-colors text-xs sm:text-sm"
+          >
+            Apply now
+          </Badge>
+          
+           <a href={job.link}
+            className="flex items-center gap-1 text-primary hover:text-primary/90 text-xs sm:text-sm font-medium transition-colors group">
+            View details
+            <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
       </CardContent>
     </Card>
@@ -153,13 +159,13 @@ function JobCard({ job, className }: { job: Job; className?: string }) {
 export default function TopHiringCompanies() {
   return (
     <section>
-      <H2 className="mb-8 text-center text-foreground">Top Hiring Companies</H2>
-      <div className="overflow-auto">
-        <div className="flex gap-6 min-w-full pb-6">
-          {jobs.map((job, index) => (
-            <JobCard key={index} job={job} />
-          ))}
-        </div>
+      <H2 className="mb-8 text-center text-foreground">
+        Top Hiring Companies
+      </H2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {jobs.map((job, index) => (
+          <JobCard key={index} job={job} />
+        ))}
       </div>
     </section>
   );

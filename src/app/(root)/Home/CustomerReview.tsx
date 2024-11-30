@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/ui/container";
 import { H2, H3, Paragraph } from "@/components/ui/typography";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Star } from "lucide-react";
 
 const reviews = [
@@ -32,17 +32,23 @@ const reviews = [
 export function CustomerReviews() {
   return (
     <section className="py-16">
-      <Container>
-        <H2 className="text-center mb-12">What Our Users Say</H2>
-        <div className="grid gap-8 md:grid-cols-3">
-          {reviews.map((review) => (
-            <Card key={review.id} className="bg-background">
-              <CardContent className="p-6">
-                <div className="flex mb-4">
+      <H2 className="text-center mb-12">What Our Users Say</H2>
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {reviews.map((review) => (
+          <Card key={review.id}>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <H3 className="font-semibold">{review.name}</H3>
+                  <Paragraph className="text-sm text-muted-foreground">
+                    {review.position}
+                  </Paragraph>
+                </div>
+                <div className="flex">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-5 h-5 ${
+                      className={`w-4 h-4 ${
                         i < review.rating
                           ? "text-yellow-400 fill-current"
                           : "text-gray-300"
@@ -50,18 +56,16 @@ export function CustomerReviews() {
                     />
                   ))}
                 </div>
-                <Paragraph className="mb-4 italic">
-                  &ldquo;{review.text}&rdquo;
-                </Paragraph>
-                <H3 className="font-semibold text-lg">{review.name}</H3>
-                <Paragraph className="text-muted-foreground">
-                  {review.position}
-                </Paragraph>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </Container>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <Paragraph className="italic text-muted-foreground">
+                &ldquo;{review.text}&rdquo;
+              </Paragraph>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </section>
   );
 }
