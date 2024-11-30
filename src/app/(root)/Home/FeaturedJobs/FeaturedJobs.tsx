@@ -77,8 +77,8 @@ function JobCard({ job, className }: { job: Job; className?: string }) {
       <CardContent className="p-4 sm:p-6 space-y-4">
         {/* Header Section */}
         <div className="flex justify-between items-start">
-          <Badge 
-            variant="secondary" 
+          <Badge
+            variant="secondary"
             className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             Actively hiring
@@ -144,9 +144,11 @@ function JobCard({ job, className }: { job: Job; className?: string }) {
           >
             Apply now
           </Badge>
-          
-           <a href={job.link}
-            className="flex items-center gap-1 text-primary hover:text-primary/90 text-xs sm:text-sm font-medium transition-colors group">
+
+          <a
+            href={job.link}
+            className="flex items-center gap-1 text-primary hover:text-primary/90 text-xs sm:text-sm font-medium transition-colors group"
+          >
             View details
             <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
           </a>
@@ -156,12 +158,10 @@ function JobCard({ job, className }: { job: Job; className?: string }) {
   );
 }
 
-export default function TopHiringCompanies() {
+export default function FeaturedJobs() {
   return (
     <section>
-      <H2 className="mb-8 text-center text-foreground">
-        Top Hiring Companies
-      </H2>
+      <H2 className="mb-8 text-center text-foreground">Featured Jobs</H2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {jobs.map((job, index) => (
           <JobCard key={index} job={job} />
