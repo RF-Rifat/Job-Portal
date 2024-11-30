@@ -1,8 +1,12 @@
 "use client";
-import ProfileHeader from "./compoents/ProfileHeader";
-import ContactInfo from "./compoents/ContactInfo";
-import Skills from "./compoents/Skills";
-import Experience from "./compoents/Experiences";
+import dynamic from "next/dynamic";
+
+// Dynamic imports
+const ProfileHeader = dynamic(() => import("./compoents/ProfileHeader"));
+const ContactInfo = dynamic(() => import("./compoents/ContactInfo"));
+const Skills = dynamic(() => import("./compoents/Skills"));
+const Experience = dynamic(() => import("./compoents/Experiences"));
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -40,13 +44,19 @@ const profileData: any = {
       {
         companyName: "TechCorp",
         role: "Lead Engineer",
-        duration: { start: new Date("2015-01-01"), end: new Date("2020-01-01") },
+        duration: {
+          start: new Date("2015-01-01"),
+          end: new Date("2020-01-01"),
+        },
         description: "Managed a team of developers.",
       },
       {
         companyName: "Innovatech",
         role: "Software Engineer",
-        duration: { start: new Date("2012-01-01"), end: new Date("2015-01-01") },
+        duration: {
+          start: new Date("2012-01-01"),
+          end: new Date("2015-01-01"),
+        },
       },
     ],
   },
@@ -64,9 +74,7 @@ const profileData: any = {
       back: "/id_back.jpg",
       selfieWithIDPhoto: "/selfie_id.jpg",
     },
-    certifications: [
-      { title: "AWS Certified", dateAchieved: "2021-05-01" },
-    ],
+    certifications: [{ title: "AWS Certified", dateAchieved: "2021-05-01" }],
     socialMediaLinks: [
       { platform: "LinkedIn", url: "https://linkedin.com/in/example" },
     ],
@@ -74,7 +82,7 @@ const profileData: any = {
   profileCompletionPercentage: 90,
 };
 
-export function ProfilePage() {
+const ProfilePage = () => {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-4xl space-y-8">
@@ -102,6 +110,6 @@ export function ProfilePage() {
       </div>
     </div>
   );
-}
+};
 
 export default ProfilePage;

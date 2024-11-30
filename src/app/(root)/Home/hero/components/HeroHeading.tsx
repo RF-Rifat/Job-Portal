@@ -6,7 +6,7 @@ export const HeroHeading = () => {
     <>
       <div className="space-y-4">
         <motion.h1
-          className="text-4xl sm:text-5xl mt-8 md:text-5xl font-bold tracking-tight"
+          className="text-4xl sm:text-5xl mt-8 md:text-5xl font-bold tracking-tight !leading-[53px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
