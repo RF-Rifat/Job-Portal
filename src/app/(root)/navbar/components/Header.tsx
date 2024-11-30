@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Briefcase } from "lucide-react";
 import { Navbar } from "../Navbar";
 import { AuthButtons } from "./AuthButtons";
 import { Container } from "@/components/ui/container";

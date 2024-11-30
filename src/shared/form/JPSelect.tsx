@@ -2,7 +2,6 @@
 
 import { Controller, useFormContext } from "react-hook-form";
 import { TFormSelectProps } from "@/types/form.type";
-
 import {
   Select,
   SelectContent,
@@ -20,14 +19,16 @@ const JPSelect = ({
 }: TFormSelectProps): JSX.Element => {
   const {
     formState: { errors },
+    control,
   } = useFormContext();
 
   return (
-    <Controller
-      name={name}
-      defaultValue={defaultValue}
-      render={({ field }) => (
-        <div>
+    <div className="space-y-2">
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={defaultValue}
+        render={({ field }) => (
           <Select
             disabled={disabled}
             onValueChange={field.onChange}
@@ -44,16 +45,14 @@ const JPSelect = ({
               ))}
             </SelectContent>
           </Select>
-          <>
-            {errors && typeof errors[name]?.message === "string" ? (
-              <small className="text-red-500">{errors[name]?.message}</small>
-            ) : (
-              ""
-            )}
-          </>
-        </div>
+        )}
+      />
+      {errors[name] && (
+        <p className="text-sm text-red-500">
+          {errors[name]?.message as string}
+        </p>
       )}
-    />
+    </div>
   );
 };
 
