@@ -2,8 +2,6 @@
 
 import { InfiniteMovingLogos } from "@/components/ui/infinite-moving-logos";
 import { H2 } from "@/components/ui/typography";
-import Image from "next/image";
-import { useState } from "react";
 
 interface Company {
   name: string;
