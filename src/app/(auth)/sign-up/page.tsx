@@ -11,14 +11,19 @@ import JPInput from "@/shared/form/JPInput";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import AuthFormHeader from "../shared/AuthFormHeader";
 import AuthRedirect from "../shared/AuthRedirect";
-import { useSignupMutation } from "@/redux/features/auth/authApi";
-
-
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import verifyToken from "@/helper/auth/VerifyToken";
+import { useAppDispatch } from "@/redux/hook";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { useSignupAsJobSeekerMutation } from "@/redux/features/auth/authApi";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -28,27 +33,35 @@ const SignUp = () => {
   };
 
   // ---------- API call  --------------
-  const [registerUser] = useSignupMutation();
+  // const [signupAsCompany] = useSignupAsCompanyMutation();
+  const [signupAsJobseeker] = useSignupAsJobSeekerMutation();
 
   // ---------- Submit the from --------------
   const onSignupSubmit = async (data: any) => {
     if (data.password !== data.confirmPassword) {
-      alert("Passwords do not match!");
+      toast({title:"Passwords do not match!",duration:2000});
       return;
     }
 
     if (!termsChecked) {
-      alert("You must agree to the terms and conditions to sign up.");
+      toast({title:"You must agree to the terms and conditions to sign up.",duration:2000});
       return;
     }
     delete data.confirmPassword;
-    const res = await registerUser(data);
-
-    console.log(res);
 
     try {
+      const response:any = await signupAsJobseeker(data);
+      if (response.data.success) {
+        const { accessToken } = response.data.data;
+        const decodedUser = verifyToken(accessToken);
+        // Set {user:"",token:""} in local state
+        dispatch(setUser({ user: decodedUser, token: accessToken }));
+        router.push("/");
+        toast({ title: "Successfully signed in", duration: 2000 });
+      }
     } catch (error: any) {
-      console.log(error.message);
+      toast({title:error?.messaage || "Something went wrong",duration:2000});
+      
     }
   };
 

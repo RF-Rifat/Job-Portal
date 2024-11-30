@@ -8,8 +8,14 @@ import { HeroHeading } from "./components/HeroHeading";
 
 import SearchSection from "./components/SearchSection";
 import Stats from "./components/Stats";
+import { useAppSelector } from "@/redux/hook";
+import { selectUser } from "@/redux/features/auth/authSlice";
 
 const HeroLayout = () => {
+
+  const user = useAppSelector(selectUser)
+  
+  console.log(user)
   return (
     <section className="relative min-h-[80vh] bg-white flex items-center justify-center py-11">
       <HeroBackgroundImage />

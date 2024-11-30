@@ -8,17 +8,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import { USER_ROLE } from "@/app/constants";
-
-const user = {
-  role: "company",
-};
+import { useAppSelector } from "@/redux/hook";
+import { selectUser } from "@/redux/features/auth/authSlice";
 
 export function Navbar() {
+  const user = useAppSelector(selectUser);
+
   return (
     <nav className="hidden items-center gap-6 md:flex">
       {/* Dropdown Menu: Resources */}
 
-      {(!user.role || user.role === USER_ROLE.COMPANY) && (
+      {( !user?.role || user?.role === USER_ROLE.COMPANY) && (
         <Link
           href="/pricing"
           className="text-base font-medium text-muted-foreground hover:text-foreground"
@@ -55,12 +55,12 @@ export function Navbar() {
       </Link>
 
       {/* Button: Find Jobs */}
-      {user.role === USER_ROLE.jobseeker ? (
+      {user?.role === USER_ROLE.jobseeker ? (
         <Button variant="outline" size="default" asChild>
           <Link href="/jobs">Find Jobs</Link>
         </Button>
       ) : (
-        user.role === USER_ROLE.COMPANY && (
+        user?.role === USER_ROLE.COMPANY && (
           <Button variant="outline" size="default" asChild>
             <Link href="/talents">Find Talents</Link>
           </Button>
@@ -69,7 +69,7 @@ export function Navbar() {
 
       {/* Dropdown Menu: Post a Job */}
       <DropdownMenu>
-        {user.role && user.role === USER_ROLE.COMPANY && (
+        {user?.role && user?.role === USER_ROLE.COMPANY && (
           <DropdownMenuTrigger asChild>
             <Button
               size="default"

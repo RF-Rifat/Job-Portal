@@ -10,60 +10,71 @@ import { baseApi } from "../../api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    signup: build.mutation({
-      query: (signupdata: any) => ({
-        url: "/auth/register/company",
-        method: "POST",
-        data: signupdata,
-      }),
+    signupAsCompany: build.mutation({
+      query: (data: any) => {
+        return {
+          url: "/auth/register/job-seeker",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    signupAsJobSeeker: build.mutation({
+      query: (data: any) => {
+        return {
+          url: "/auth/register/job-seeker",
+          method: "POST",
+          body: data,
+        };
+      },
     }),
     signin: build.mutation({
-      query: (signinData: ISigninData) => ({
+      query: (data: ISigninData) => ({
         url: "/auth/login",
         method: "POST",
-        data: signinData,
+        body: data,
       }),
     }),
     isUserExist: build.mutation({
       query: (data) => ({
         url: "/auth/is-exist",
         method: "POST",
-        data: data,
+        body: data,
       }),
     }),
     forgotPassword: build.mutation({
       query: (email: IForgotPassword) => ({
         url: "/auth/forget-password",
         method: "POST",
-        data: email,
+        body: email,
       }),
     }),
     resetPassword: build.mutation({
       query: ({ data, token }) => ({
         url: `/auth/reset-password/${token}`,
         method: "PATCH",
-        data: { newPassword: data.newPassword },
+        body: { newPassword: data.newPassword },
       }),
     }),
     changePassword: build.mutation({
       query: (data: IChangePassword) => ({
         url: `/auth/change-password`,
         method: "PATCH",
-        data: data,
+        body: data,
       }),
     }),
     changeEmail: build.mutation({
       query: (data: IChangeEmail) => ({
         url: `/auth/change-email`,
         method: "PATCH",
-        data: data,
+        body: data,
       }),
     }),
     sendVerifictionEmail: build.mutation({
       query: (data: { name: string; email: string }) => ({
         url: "/auth/sendVerificationEmail",
         method: "POST",
-        data: data,
+        body: data,
       }),
     }),
     verifyEmail: build.mutation({
@@ -78,8 +89,9 @@ const authApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useSignupAsCompanyMutation,
+  useSignupAsJobSeekerMutation,
   useSigninMutation,
-  useSignupMutation,
   useIsUserExistMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,

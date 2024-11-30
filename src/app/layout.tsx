@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/lib/Providers";
 import ChatBot from "@/components/shared/ChatBot";
 import AppContext from "@/context/AppContext";
+import { Toaster } from "@/components/ui/toaster";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
         <AppContext>
           <ChatBot />
           <Providers>{children}</Providers>
+          <Toaster />
         </AppContext>
       </body>
     </html>
