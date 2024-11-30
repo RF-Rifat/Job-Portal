@@ -57,7 +57,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="mt-11 md:mt-0 md:flex justify-center h-screen items-center gap-6 overflow-hidden">
+    <div className="mt-11 md:mt-0 lg:flex justify-center h-screen items-center gap-6 overflow-hidden">
       <SigninVector />
       <div className="flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import JPForm from "@/shared/form/JPForm";
 import JPInput from "@/shared/form/JPInput";
 import {
@@ -14,63 +13,95 @@ import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
+import PasswordToggle from "../shared/PasswordToggle";
+import { toast } from "@/hooks/use-toast";
+import {
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
+} from "@/redux/features/auth/authApi";
+import { useRouter } from "next/navigation";
 
 const emailSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
 });
 
-const otpSchema = z.object({
-  otp: z.string().length(6, "OTP must be 6 digits"),
-});
-
-const passwordSchema = z
-  .object({
-    newPassword: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.newPassword === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-  });
-
 const ResetPassword = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [otpValue, setOtpValue] = useState("");
+  const [otp, setOtp] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const router = useRouter();
 
-  console.log(newPassword, confirmPassword, otpValue);
+  // API call
+  const [forgotPassword] = useForgotPasswordMutation();
+  const [resetPassword] = useResetPasswordMutation();
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   const onSubmitEmail = async (data: any) => {
-    console.log("Email submitted:", data.email);
     setEmail(data.email);
-    // Here you would typically make an API call to send the OTP
     setStep(2);
-  };
-
-  const onSubmitOtp = async () => {
-    console.log("OTP submitted:", otp);
-
-    setStep(3);
+    try {
+      const response: any = await forgotPassword({ email: data.email });
+      console.log({ response });
+      if (response.success) {
+        toast({ title: "Email sent successfully!", duration: 2000 });
+      }
+    } catch (error: any) {
+      toast({
+        title: error?.message || "Something went wrong",
+        duration: 2000,
+      });
+    }
   };
 
   useEffect(() => {
-    const otpNumber = Number(otp);
-    
-    console.log(otpNumber)
+    console.log(otpValue);
+    console.log(otpValue.length);
+    if (otpValue.length === 6) {
+      setOtp(otpValue);
+      setStep(3);
+    }
+  }, [otpValue]);
 
-  }, [otp]);
-
-  
   const onSubmitNewPassword = async (data: any) => {
+    if (data.password !== data.confirmPassword) {
+      toast({ title: "Passwords do not match!", duration: 2000 });
+      return;
+    }
+
     console.log("New password submitted:", {
       email,
       otp,
-      newPassword: data.newPassword,
+      newPassword: data.password,
     });
-    // Here you would typically make an API call to update the password
+
+    try {
+      const response: any = await resetPassword({
+        email,
+        otp,
+        newPassword: data.password,
+      });
+
+      
+      console.log(response)
+      if (response?.data?.success) {
+        router.push("/sign-in");
+        toast({
+          title: "Password reset successfull",
+          duration: 2000,
+        });
+      }
+    } catch (error: any) {
+      setStep(1)
+      toast({
+        title: error?.message || "Something went wrong",
+      });
+    }
   };
 
   return (
@@ -78,12 +109,12 @@ const ResetPassword = () => {
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold tracking-tight">
+            <h1 className="text-3xl text-left font-bold tracking-tight">
               {step === 1 && "Reset your password"}
               {step === 2 && "Enter verification code"}
               {step === 3 && "Create new password"}
             </h1>
-            <p className="text-gray-500">
+            <p className="text-gray-500 text-left">
               {step === 1 && "Enter your email to receive a verification code"}
               {step === 2 && `Enter the 6-digit code sent to ${email}`}
               {step === 3 && "Choose a strong password for your account"}
@@ -102,7 +133,13 @@ const ResetPassword = () => {
                 placeholder="Enter your email"
                 onChange={setEmail}
               />
-              <PrimaryButton text="Send verification code" type="submit" />
+              <div>
+                <PrimaryButton
+                  type="submit"
+                  text="Send verification code"
+                  className="h-11 mt-2"
+                />
+              </div>
             </JPForm>
           )}
 
@@ -113,7 +150,6 @@ const ResetPassword = () => {
               pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
               onChange={(otp: string) => {
                 setOtpValue(otp);
-                console.log("Current OTP value:", otp);
               }}
             >
               <InputOTPGroup>
@@ -128,39 +164,47 @@ const ResetPassword = () => {
           )}
 
           {step === 3 && (
-            <JPForm
-              onSubmit={onSubmitNewPassword}
-              resolver={zodResolver(passwordSchema)}
-              className="space-y-6"
-            >
-              <div className="space-y-4">
+            <JPForm onSubmit={onSubmitNewPassword} className="space-y-6">
+              <div className="relative">
                 <JPInput
-                  name="newPassword"
-                  type="password"
-                  placeholder="New password"
-                  onChange={setNewPassword}
+                  name="password"
+                  label="Password"
+                  placeholder="Enter your password"
+                  type={showPassword ? "text" : "password"}
                 />
-                <JPInput
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="Confirm password"
-                  onChange={setConfirmPassword}
+                <PasswordToggle
+                  showPassword={showPassword}
+                  togglePassword={togglePasswordVisibility}
                 />
               </div>
-              <PrimaryButton text="Reset password" type="submit" />
+
+              <div className="relative">
+                <JPInput
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  placeholder="Confirm your password"
+                  type={showConfirmPassword ? "text" : "password"}
+                />
+                <PasswordToggle
+                  showPassword={showConfirmPassword}
+                  togglePassword={toggleConfirmPasswordVisibility}
+                />
+              </div>
+
+              <div>
+                <PrimaryButton
+                  type="submit"
+                  text="reset password"
+                  className="h-11 mt-2"
+                />
+              </div>
             </JPForm>
           )}
         </div>
       </div>
 
       <div className="hidden lg:flex flex-1 items-center justify-center bg-gray-50">
-        <Image
-          src="/auth/reset-password.svg"
-          alt="Reset password illustration"
-          width={500}
-          height={500}
-          className="max-w-md"
-        />
+        {" "}
       </div>
     </div>
   );

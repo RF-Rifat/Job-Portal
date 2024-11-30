@@ -2,7 +2,6 @@
 import {
   IChangeEmail,
   IChangePassword,
-  IForgotPassword,
   ISigninData,
   // ISignUpData,
 } from "@/interface/auth";
@@ -43,17 +42,17 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
     forgotPassword: build.mutation({
-      query: (email: IForgotPassword) => ({
-        url: "/auth/forget-password",
+      query: (data: { email: string }) => ({
+        url: "/auth/forgot-password",
         method: "POST",
-        body: email,
+        body: data,
       }),
     }),
     resetPassword: build.mutation({
-      query: ({ data, token }) => ({
-        url: `/auth/reset-password/${token}`,
+      query: (data) => ({
+        url: `/auth/reset-password`,
         method: "PATCH",
-        body: { newPassword: data.newPassword },
+        body: data,
       }),
     }),
     changePassword: build.mutation({
