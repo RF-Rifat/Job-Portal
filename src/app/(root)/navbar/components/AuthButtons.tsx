@@ -14,7 +14,7 @@ export function AuthButtons() {
         <Button
           onClick={() => router.push("/sign-in")}
           variant="ghost"
-          size="sm"
+          size="default"
           className="text-white hover:bg-primary/90 hover:text-[white]  dark:hover:text-white bg-primary rounded-full p-5 px-6"
         >
           Sign In
@@ -23,7 +23,7 @@ export function AuthButtons() {
         <Button
           onClick={() => router.push("/sign-up")}
           variant="outline"
-          size="sm"
+          size="default"
           className="text-white hover:bg-primary/90 hover:text-neutral-900  dark:hover:text-white bg-primary rounded-full p-5 px-6"
         >
           Sign Up

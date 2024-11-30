@@ -21,14 +21,14 @@ export function Navbar() {
       {(!user.role || user.role === USER_ROLE.COMPANY) && (
         <Link
           href="/pricing"
-          className="text-sm font-medium text-muted-foreground hover:text-foreground"
+          className="text-base font-medium text-muted-foreground hover:text-foreground"
         >
           Pricing
         </Link>
       )}
 
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground">
+        <DropdownMenuTrigger className="flex items-center gap-1 text-base font-medium text-muted-foreground hover:text-foreground">
           Resources
           <ChevronDown className="h-4 w-4" />
         </DropdownMenuTrigger>
@@ -49,19 +49,19 @@ export function Navbar() {
       {/* Simple Links */}
       <Link
         href="/messages"
-        className="text-sm font-medium text-muted-foreground hover:text-foreground"
+        className="text-base font-medium text-muted-foreground hover:text-foreground"
       >
         Messages
       </Link>
 
       {/* Button: Find Jobs */}
       {user.role === USER_ROLE.jobseeker ? (
-        <Button variant="outline" size="sm" asChild>
+        <Button variant="outline" size="default" asChild>
           <Link href="/jobs">Find Jobs</Link>
         </Button>
       ) : (
         user.role === USER_ROLE.COMPANY && (
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="default" asChild>
             <Link href="/talents">Find Talents</Link>
           </Button>
         )
@@ -72,7 +72,7 @@ export function Navbar() {
         {user.role && user.role === USER_ROLE.COMPANY && (
           <DropdownMenuTrigger asChild>
             <Button
-              size="sm"
+              size="default"
               className="gap-1 border bg-background text-primary hover:bg-primary hover:text-primary-foreground"
             >
               Post A Job
