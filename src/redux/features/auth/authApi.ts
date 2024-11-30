@@ -6,7 +6,7 @@ import {
   ISigninData,
   // ISignUpData,
 } from "@/interface/auth";
-import { baseApi } from "../baseApi";
+import { baseApi } from "../../api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
