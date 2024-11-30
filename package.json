@@ -15,10 +15,7 @@
     "@radix-ui/react-collapsible": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-label": "^2.1.0",
-<<<<<<< HEAD
-=======
     "@radix-ui/react-popover": "^1.1.2",
->>>>>>> 944d5302b7f2cbc627b9bf136826d185677be618
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-radio-group": "^1.2.1",
     "@radix-ui/react-scroll-area": "^1.2.1",
@@ -28,10 +25,7 @@
     "@radix-ui/react-switch": "^1.1.1",
     "@radix-ui/react-tabs": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.2",
-<<<<<<< HEAD
     "@radix-ui/react-toggle": "^1.1.0",
-=======
->>>>>>> 944d5302b7f2cbc627b9bf136826d185677be618
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.1",
