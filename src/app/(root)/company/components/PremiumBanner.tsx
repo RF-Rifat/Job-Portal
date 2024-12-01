@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { H3, Paragraph } from "@/components/ui/typography";
 import { Crown, Rocket } from "lucide-react";
 import Link from "next/link";
 
@@ -9,14 +10,14 @@ export function PremiumBanner() {
       <div className="p-6 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <div className="h-12 w-12 rounded-full bg-yellow-200 flex items-center justify-center">
-            <Crown className="h-6 w-6 text-yellow-700" />
+            <Crown className="h-8 w-8 text-yellow-700" />
           </div>
           <div>
-            <h3 className="font-semibold text-lg">Upgrade to Premium</h3>
-            <p className="text-sm text-muted-foreground">
+            <H3>Upgrade to Premium</H3>
+            <Paragraph>
               Make hiring more efficient with premium features and unlimited job
               posts
-            </p>
+            </Paragraph>
           </div>
         </div>
         <Link href="/pricing">
