@@ -4,7 +4,7 @@ import { CheckCircle2, AlertCircle } from 'lucide-react'
 
 export function IDVerificationGuide() {
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full max-w-4xl mx-auto shadow-none">
 
       <CardContent className="space-y-6 py-6">
         <div className="space-y-4">

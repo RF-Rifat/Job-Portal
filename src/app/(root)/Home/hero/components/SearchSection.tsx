@@ -75,7 +75,7 @@ const SearchSection = () => {
         >
           <Button
             size="lg"
-            className="w-full sm:w-auto mt-3 md:mt-0 py-6 text-md rounded-full"
+            className="w-full sm:w-auto mt-3 md:mt-0 py-3 md:py-6 md:text-md rounded-full"
             onClick={handleSearch}
           >
             Search

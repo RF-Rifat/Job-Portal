@@ -27,7 +27,7 @@ const IDVerification: React.FC<IDVerificationProps> = ({
   setAdditionalPhoto,
 }) => {
   return (
-    <Card>
+    <Card className="shadow-none">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-sm text-primary-foreground">

@@ -27,7 +27,7 @@ export default function UploadCard({
           onUpload(file || null);
         }}
       />
-      <Card className="h-[300px] border-dashed">
+      <Card className="h-[300px] border-dashed shadow-none">
         <CardContent className="flex h-full flex-col items-center justify-center p-6">
           {preview ? (
             <div className="relative h-full w-full">

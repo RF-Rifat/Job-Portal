@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const ContactInfo = ({ data }: { data: any }) => (
-  <Card>
+  <Card className="shadow-none">
     <CardHeader className="font-heading text-lg font-semibold">Contact Information</CardHeader>
     <CardContent className="grid gap-4">
       <div className="flex items-center gap-2">

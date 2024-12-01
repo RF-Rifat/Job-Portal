@@ -59,12 +59,13 @@ export default function ProfileVerification() {
 
   return (
     <div className="min-h-screen  p-4 md:p-8  relative">
-      <div className="mx-auto max-w-4xl space-y-8 !pt-5 ">
+        <BackgroundBlob />
+      <div className="mx-auto max-w-4xl space-y-8 !pt-8 ">
         <Heading />
         <IDVerificationGuide />
         <JPForm onSubmit={onSubmit} className="space-y-8">
           {/* Profile Photos Section */}
-          <Card>
+          <Card className="shadow-none">
             <CardHeader>
               <CardTitle className="flex items-center font-body gap-2">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-sm text-primary-foreground">
@@ -131,47 +132,6 @@ export default function ProfileVerification() {
 
           <ProfileName />
 
-          {/* ID Verification Section */}
-          {/* <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center  gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-sm text-primary-foreground">
-                  3
-                </span>
-                <H3 className="md:!text-lg !text-sm">ID Verification</H3>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <UploadCard
-                  title="Front of ID"
-                  description="Upload the front side of your government-issued ID"
-                  onUpload={(file) => handleFileUpload(file, setIdFront)}
-                  preview={idFront}
-                />
-                <UploadCard
-                  title="Back of ID"
-                  description="Upload the back side of your government-issued ID"
-                  onUpload={(file) => handleFileUpload(file, setIdBack)}
-                  preview={idBack}
-                />
-                <UploadCard
-                  title="Selfie with ID"
-                  description="Take a photo of yourself holding your ID"
-                  onUpload={(file) => handleFileUpload(file, setSelfie)}
-                  preview={selfie}
-                />
-                <UploadCard
-                  title="Additional Photo"
-                  description="Upload any additional verification photo if required"
-                  onUpload={(file) =>
-                    handleFileUpload(file, setAdditionalPhoto)
-                  }
-                  preview={additionalPhoto}
-                />
-              </div>
-            </CardContent>
-          </Card> */}
 
           <IDVerification
             idFront={idFront}
@@ -191,8 +151,8 @@ export default function ProfileVerification() {
               className="w-1/2 py-5"
             />
           </div>
+        
         </JPForm>
-        <BackgroundBlob />
       </div>
     </div>
   );
