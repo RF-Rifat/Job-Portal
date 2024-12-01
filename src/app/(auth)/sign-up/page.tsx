@@ -12,11 +12,11 @@ import PrimaryButton from "@/shared/ui/PrimaryButton";
 import AuthFormHeader from "../shared/AuthFormHeader";
 import AuthRedirect from "../shared/AuthRedirect";
 import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import verifyToken from "@/helper/auth/VerifyToken";
 import { useAppDispatch } from "@/redux/hook";
 import { setUser } from "@/redux/features/auth/authSlice";
-import { useSignupAsJobSeekerMutation } from "@/redux/features/auth/authApi";
+import { useSignupAsCompanyMutation, useSignupAsJobSeekerMutation } from "@/redux/features/auth/authApi";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,6 +24,8 @@ const SignUp = () => {
   const [termsChecked, setTermsChecked] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const search = useSearchParams();
+  const userType = search.get('userType');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -32,46 +34,42 @@ const SignUp = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  // ---------- API call  --------------
-  // const [signupAsCompany] = useSignupAsCompanyMutation();
   const [signupAsJobseeker] = useSignupAsJobSeekerMutation();
+  const [signupAsCompany] = useSignupAsCompanyMutation();
 
-  // ---------- Submit the from --------------
   const onSignupSubmit = async (data: any) => {
     if (data.password !== data.confirmPassword) {
-      toast({title:"Passwords do not match!",duration:2000});
+      toast({ title: "Passwords do not match!", duration: 2000 });
       return;
     }
-
     if (!termsChecked) {
-      toast({title:"You must agree to the terms and conditions to sign up.",duration:2000});
+      toast({ title: "You must agree to the terms and conditions to sign up.", duration: 2000 });
       return;
     }
     delete data.confirmPassword;
 
     try {
-      const response:any = await signupAsJobseeker(data);
+      const signup = userType === "company" ? signupAsCompany : signupAsJobseeker;
+      const response: any = await signup(data);
       if (response.data.success) {
         const { accessToken } = response.data.data;
         const decodedUser = verifyToken(accessToken);
-        // Set {user:"",token:""} in local state
         dispatch(setUser({ user: decodedUser, token: accessToken }));
         router.push("/");
         toast({ title: "Successfully signed in", duration: 2000 });
       }
     } catch (error: any) {
-      toast({title:error?.messaage || "Something went wrong",duration:2000});
-      
+      toast({ title: error?.message || "Something went wrong", duration: 2000 });
     }
   };
 
   return (
-    <div className="lg:flex justify-center items-center relative">
+    <div className="lg:flex justify-center items-center  relative">
       <div className="min-h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
           <AuthFormHeader
-            title="Create an Account"
-            description="Sign up to start accessing job opportunities"
+            title={`Sign Up as ${userType === "company" ? "Company" : "Job-seeker"}`}
+            description={`Create your ${userType === "company" ? "Company" : "Job-seeker"} account now to  get started.`}
           />
 
           <div className="w-full">
@@ -82,24 +80,20 @@ const SignUp = () => {
                   label="Full Name"
                   placeholder="Enter your name"
                   type="text"
-                  
                 />
                 <JPInput
                   name="email"
                   label="Email"
                   placeholder="Enter your email"
                   type="email"
-                  
                 />
 
-                {/* Password Field */}
                 <div className="relative">
                   <JPInput
                     name="password"
                     label="Password"
                     placeholder="Enter your password"
                     type={showPassword ? "text" : "password"}
-                    
                   />
                   <PasswordToggle
                     showPassword={showPassword}
@@ -107,14 +101,12 @@ const SignUp = () => {
                   />
                 </div>
 
-                {/* Confirm Password Field */}
                 <div className="relative">
                   <JPInput
                     name="confirmPassword"
                     label="Confirm Password"
                     placeholder="Confirm your password"
                     type={showConfirmPassword ? "text" : "password"}
-                    
                   />
                   <PasswordToggle
                     showPassword={showConfirmPassword}
@@ -122,7 +114,6 @@ const SignUp = () => {
                   />
                 </div>
 
-                {/* Terms Checkbox */}
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     name="terms"
@@ -139,7 +130,6 @@ const SignUp = () => {
                     </Link>
                   </Checkbox>
                 </div>
-                {/* Submit the form */}
                 <div>
                   <PrimaryButton
                     type="submit"
@@ -163,3 +153,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
