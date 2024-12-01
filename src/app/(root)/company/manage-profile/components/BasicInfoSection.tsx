@@ -30,6 +30,7 @@ export function BasicInfoSection() {
             <FileUpload
               name="logo"
               onChange={(file) => {
+                console.log(file)
                 // Handle file change
               }}
             />

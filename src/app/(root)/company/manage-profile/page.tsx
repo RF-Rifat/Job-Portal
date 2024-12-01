@@ -1,7 +1,14 @@
+import { Container } from "@/components/ui/container";
 import { CompanyProfileForm } from "./components/profile";
+import { QuickLinks } from "./components/QucikLinks";
 
 const page = () => {
-  return <><CompanyProfileForm/> </>;
-}
+  return (
+    <Container>
+      <CompanyProfileForm />
+      <QuickLinks/>
+    </Container>
+  );
+};
 
-export default page
+export default page;
