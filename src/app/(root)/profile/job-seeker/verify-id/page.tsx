@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Camera, Upload, X } from "lucide-react";
+import { Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import JPForm from "@/shared/form/JPForm";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Image from "next/image";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { H3 } from "@/components/ui/typography";
 import { IDVerificationGuide } from "./components/IdVerificationGuid";
