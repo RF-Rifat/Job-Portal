@@ -82,14 +82,14 @@ const SignUp = () => {
                   label="Full Name"
                   placeholder="Enter your name"
                   type="text"
-                  className="rounded-full"
+                  
                 />
                 <JPInput
                   name="email"
                   label="Email"
                   placeholder="Enter your email"
                   type="email"
-                  className="rounded-full"
+                  
                 />
 
                 {/* Password Field */}
@@ -99,7 +99,7 @@ const SignUp = () => {
                     label="Password"
                     placeholder="Enter your password"
                     type={showPassword ? "text" : "password"}
-                    className="rounded-full"
+                    
                   />
                   <PasswordToggle
                     showPassword={showPassword}
@@ -114,7 +114,7 @@ const SignUp = () => {
                     label="Confirm Password"
                     placeholder="Confirm your password"
                     type={showConfirmPassword ? "text" : "password"}
-                    className="rounded-full"
+                    
                   />
                   <PasswordToggle
                     showPassword={showConfirmPassword}
