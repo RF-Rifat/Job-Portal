@@ -74,7 +74,6 @@ const SignIn = () => {
               <div className="space-y-6">
                 <div className="space-y-2">
                   <JPInput
-                    className="rounded-full"
                     name="email"
                     label="Email"
                     placeholder="Enter your email"
@@ -84,7 +83,6 @@ const SignIn = () => {
                 <div className="space-y-2">
                   <div className="relative">
                     <JPInput
-                      className="rounded-full"
                       name="password"
                       label="Password"
                       placeholder="Enter your password"

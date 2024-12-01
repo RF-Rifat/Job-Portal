@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 const Experience = ({ data }: { data: any }) => (
-  <Card>
+  <Card className="shadow-none"> 
     <CardHeader className="font-heading text-lg font-semibold">Experience</CardHeader>
     <CardContent className="grid gap-4">
       {data.workExperience?.hasExperience &&

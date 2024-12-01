@@ -4,14 +4,15 @@
 import { Star } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const ProfileHeader = ({ data }: { data: any }) => (
-  <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
-    <div className="relative h-48 w-48 overflow-hidden rounded-lg">
+  <Card className="flex flex-col gap-4 md:flex-row md:items-start bg-white py-8 px-5 shadow-none md:gap-6">
+    <div className="relative size-36 md:size-48 overflow-hidden rounded-lg">
       <Image
         src={data?.photo} // Static placeholder
         alt="Profile photo"
-        className="object-cover"
+        className="object-cover rounded-full"
         fill
         priority
       />
@@ -41,7 +42,7 @@ const ProfileHeader = ({ data }: { data: any }) => (
         <Button variant="outline">Contacts</Button>
       </div>
     </div>
-  </div>
+  </Card>
 );
 
 export default ProfileHeader;

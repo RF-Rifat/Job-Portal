@@ -15,9 +15,9 @@ export function AuthButtons() {
       {user ? (
         <ProfileDropdown
           Trigger={
-            <Avatar className="cursor-pointer">
+            <Avatar className=" size-8 cursor-pointer">
               <AvatarImage
-                className="h-7 w-7"
+                className="size-8 object-fill"
                 src="https://github.com/shadcn.png"
               />
               <AvatarFallback className="h-7 w-7 text-xs">JP</AvatarFallback>

@@ -1,4 +1,4 @@
-    "use client";
+"use client";
 
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,14 +10,15 @@ import JPForm from "@/shared/form/JPForm";
 import JPInput from "@/shared/form/JPInput";
 import JPSelect from "@/shared/form/JPSelect";
 import JPTextArea from "@/shared/form/JPTextarea";
-import { ProfileHeader } from "./ProfileHeader";
+import { ProfileHeader } from "./components/ProfileHeader";
 import { Step, Stepper } from "./components/Stepper";
 import {
   educationSchema,
   experienceSchema,
   personalInfoSchema,
   skillsSchema,
-} from "./form";
+} from "@/schema/jobSeeker.profileinfo";
+
 import { Container } from "@/components/ui/container";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 

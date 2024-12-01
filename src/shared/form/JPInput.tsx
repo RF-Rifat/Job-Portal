@@ -30,7 +30,7 @@ const JPInput = ({
             autoComplete="off"
             placeholder={placeholder}
             className={`
-              ${className} p-6  pl-5 text-sm md:text-lg   w-full border placeholder:text-gray-400 text-black border-gray-200 bg-white
+              ${className} p-6  pl-5 text-sm   w-full border placeholder:text-gray-400 text-black border-gray-200 bg-white
               
               
             `}

@@ -43,7 +43,7 @@ const footerSections = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200">
+    <footer className="border-t bg-white border-gray-200">
       <Container className="py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {footerSections.map((section) => (

@@ -9,6 +9,7 @@ const Experience = dynamic(() => import("./compoents/Experiences"));
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
+import BackgroundBlob from "@/shared/ui/BackgroundBlob";
 
 const profileData: any = {
   photo: "/profile/profile_1.jpg",
@@ -84,8 +85,9 @@ const profileData: any = {
 
 const ProfilePage = () => {
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
+    <div className="min-h-screen bg-background p-4 md:p-8 !pt-11 -z-10 relative">
       <div className="mx-auto max-w-4xl space-y-8">
+      <BackgroundBlob />
         <ProfileHeader data={profileData} />
         <Tabs defaultValue="timeline" className="w-full">
           <TabsList>
@@ -100,13 +102,15 @@ const ProfilePage = () => {
             </div>
           </TabsContent>
           <TabsContent value="about" className="mt-6">
-            <Card>
+            <Card className="shadow-none">
               <CardContent className="pt-6">
                 <p>Additional information about the profile would go here.</p>
               </CardContent>
             </Card>
           </TabsContent>
         </Tabs>
+
+        
       </div>
     </div>
   );
