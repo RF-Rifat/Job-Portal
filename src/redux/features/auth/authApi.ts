@@ -12,7 +12,7 @@ const authApi = baseApi.injectEndpoints({
     signupAsCompany: build.mutation({
       query: (data: any) => {
         return {
-          url: "/auth/register/job-seeker",
+          url: "/auth/register/company",
           method: "POST",
           body: data,
         };

@@ -7,7 +7,6 @@ import { useState } from "react";
 import SigninVector from "./_components/SigninVector";
 import { Eye, EyeClosed } from "lucide-react";
 import Checkbox from "@/shared/form-fields/Checkbox";
-import AuthRedirect from "../shared/AuthRedirect";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { toast } from "@/hooks/use-toast";
 import { useSigninMutation } from "@/redux/features/auth/authApi";
@@ -15,6 +14,7 @@ import { useAppDispatch } from "@/redux/hook";
 import verifyToken from "@/helper/auth/VerifyToken";
 import { setUser } from "@/redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { UserTypeModal } from "../sign-up/modal/IsCompanyOrJobseekerModal";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -38,7 +38,6 @@ const SignIn = () => {
 
     try {
       const response: any = await SigninAsUser(data);
-
       console.log(response);
       if (response.data.success) {
         const { accessToken } = response.data.data;
@@ -55,6 +54,9 @@ const SignIn = () => {
       });
     }
   };
+
+  // USER TYPE MODAL
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="mt-11 md:mt-0 lg:flex justify-center h-screen items-center gap-6 overflow-hidden">
@@ -137,14 +139,22 @@ const SignIn = () => {
                 </div>
               </div>
             </JPForm>
-            <AuthRedirect
-              message="Do not have account?"
-              linkText="Sign up now"
-              href="/sign-up"
-            />
+            <button
+              className="mt-4 text-center text-sm text-gray-500 w-full"
+              onClick={() => setModalOpen(true)}
+            >
+              Do not have account?{" "}
+              <span className="text-blue-600 hover:underline">Sign up now</span>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* USER Type modal (jobseeker or company) */}
+      <UserTypeModal
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
     </div>
   );
 };
