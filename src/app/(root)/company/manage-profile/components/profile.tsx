@@ -57,16 +57,14 @@ const schema = z.object({
     .optional(),
 });
 
-type CompanyProfileFormData = z.infer<typeof schema>;
 
 export function CompanyProfileForm() {
-  const onSubmit = (data: CompanyProfileFormData) => {
+  const onSubmit = (data: any) => {
     console.log(data);
-    // Here you would typically send the data to your backend
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full max-w-4xl mx-auto my-6">
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Company Profile</CardTitle>
         <CardDescription className="text-base">
