@@ -42,8 +42,9 @@ export default function ChatBot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
+            className="w-full max-w-[90vw] md:max-w-md"
           >
-            <Card className="w-full max-w-md overflow-hidden rounded-3xl shadow-lg">
+            <Card className="overflow-hidden rounded-3xl shadow-lg">
               <motion.div
                 initial={{ y: -20 }}
                 animate={{ y: 0 }}
@@ -92,7 +93,7 @@ export default function ChatBot() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
-                className="flex max-h-[400px] flex-col gap-4 overflow-y-auto p-4"
+                className="flex max-h-[50vh] flex-col gap-4 overflow-y-auto p-4"
               >
                 <div className="flex items-start gap-3">
                   <Avatar className="h-8 w-8">
@@ -175,7 +176,7 @@ export default function ChatBot() {
                       className="rounded-full bg-primary hover:bg-primary"
                       aria-label="Send message"
                     >
-                      <Send className="h-5 w-5" />
+                      <Send className="h-6 w-6" />
                     </Button>
                   </div>
                 </div>
@@ -189,13 +190,13 @@ export default function ChatBot() {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <Button
+            <button
               onClick={toggleChat}
-              className="rounded-full bg-primary p-4 text-white shadow-lg hover:bg-primary"
+              className="rounded-full bg-primary p-4 text-white shadow-lg hover:bg-primary transition-all duration-300 ease-in-out hover:scale-110"
               aria-label="Open chat"
             >
-              <MessageCircle className="h-8 w-8" />
-            </Button>
+              <MessageCircle className="h-7 w-7" />
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
