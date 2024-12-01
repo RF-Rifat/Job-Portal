@@ -68,7 +68,7 @@ export function CompanyProfileForm() {
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Company Profile</CardTitle>
         <CardDescription className="text-base">
-          Manage your company&apos;s information and online presence. Fill out the
+          Manage onilinestaff&apos;s information and online presence. Fill out the
           details below to create a comprehensive profile for your business.
         </CardDescription>
       </CardHeader>
