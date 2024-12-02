@@ -29,7 +29,7 @@ export default function ComingSoon() {
         </div>
       </div>
       <footer className="relative z-10 mt-16 text-sm text-muted-foreground font-body">
-        © {new Date().getFullYear()} onlinestaff Name. All rights reserved.
+        © {new Date().getFullYear()} onlinestaff. All rights reserved.
       </footer>
     </div>
   );
