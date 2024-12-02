@@ -14,7 +14,7 @@ const JPInput = ({
   className,
   defaultValue = "",
   placeholder,
-  onChange
+  onChange,
 }: Iprops) => {
   const {
     formState: { errors },

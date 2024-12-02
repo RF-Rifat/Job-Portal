@@ -56,7 +56,7 @@ const SearchSection = () => {
           />
         )}
 
-        {user?.role === "jobseeker" && (
+        {user?.role === "job-seeker" && (
           <HeroSearchBar
             placeholder="Search for jobs..."
             value={jobSearch}

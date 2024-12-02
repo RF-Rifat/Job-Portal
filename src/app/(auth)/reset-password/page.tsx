@@ -28,7 +28,7 @@ const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
-
+ 
   // API call
   const [forgotPassword] = useForgotPasswordMutation();
   const [resetPassword,{isLoading:isResetPasswordLoading}] = useResetPasswordMutation();
@@ -137,24 +137,6 @@ const ResetPassword = () => {
           )}
 
           {step === 2 && (
-            // <InputOTP
-            //   className="flex justify-center w-full"
-            //   maxLength={6}
-            //   pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-            //   onChange={(otp: string) => {
-            //     setOtpValue(otp);
-            //   }}
-            // >
-            //   <InputOTPGroup>
-            //     <InputOTPSlot className="ml-4" index={0} />
-            //     <InputOTPSlot className="ml-4" index={1} />
-            //     <InputOTPSlot className="ml-4" index={2} />
-            //     <InputOTPSlot className="ml-4" index={3} />
-            //     <InputOTPSlot className="ml-4" index={4} />
-            //     <InputOTPSlot className="ml-4" index={5} />
-            //   </InputOTPGroup>
-            // </InputOTP>
-
             <ReusableOTP length={6}  onComplete={handleOtpComplete} />
           )}
 

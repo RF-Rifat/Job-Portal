@@ -8,7 +8,13 @@ interface CheckboxProps {
   children?: React.ReactNode;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ name, checked, onChange, label, children }) => {
+const Checkbox: React.FC<CheckboxProps> = ({
+  name,
+  checked,
+  onChange,
+  label,
+  children,
+}) => {
   return (
     <div className="flex items-center space-x-2">
       <input

@@ -14,9 +14,12 @@ const Experience = ({ data }: { data: any }) => (
             <h3 className="font-heading font-semibold">{exp.companyName}</h3>
             <p className="text-sm text-muted-foreground">{exp.role}</p>
             <p className="text-sm text-muted-foreground">
-              {exp.duration.start.toLocaleDateString()} - {exp.duration.end.toLocaleDateString()}
+              {exp.duration.start.toLocaleDateString()} -{" "}
+              {exp.duration.end.toLocaleDateString()}
             </p>
-            {exp.description && <p className="text-sm text-muted-foreground">{exp.description}</p>}
+            {exp.description && (
+              <p className="text-sm text-muted-foreground">{exp.description}</p>
+            )}
             <Separator />
           </div>
         ))}

@@ -1,6 +1,6 @@
 interface AuthFormHeaderProps {
     title: string;
-    description: string;
+    description: string; 
   }
   
   const AuthFormHeader = ({ title, description }: AuthFormHeaderProps) => {

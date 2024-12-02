@@ -24,7 +24,5 @@ export interface TInputProps {
     error?: string;
     message?: string;
   };
-  onChange?: (p:string) => void
+  onChange?: (p: string) => void;
 }
-
-

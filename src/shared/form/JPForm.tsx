@@ -1,6 +1,4 @@
-
-"use client"
-
+"use client";
 
 import { ReactNode } from "react";
 import {
@@ -20,7 +18,7 @@ type TFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
   children: ReactNode;
   className?: string;
-  isReset?: boolean ;
+  isReset?: boolean;
 } & TFormConfig;
 
 const JPForm = ({
@@ -54,10 +52,7 @@ const JPForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form
-        className={`${className}`}
-        onSubmit={methods.handleSubmit(submit)}
-      >
+      <form className={`${className}`} onSubmit={methods.handleSubmit(submit)}>
         {children}
       </form>
     </FormProvider>

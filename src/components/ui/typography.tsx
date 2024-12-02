@@ -12,7 +12,7 @@ export function H1({ children, className, ...props }: TypographyProps) {
     <h1
       className={cn(
         "scroll-m-20 text-4xl font-heading font-bold tracking-tight lg:text-5xl",
-        className
+        className,
       )}
       {...props}
     >
@@ -26,7 +26,7 @@ export function H2({ children, className, ...props }: TypographyProps) {
     <h2
       className={cn(
         "scroll-m-20 text-3xl font-heading font-semibold tracking-tight lg:text-4xl",
-        className
+        className,
       )}
       {...props}
     >
@@ -40,7 +40,7 @@ export function H3({ children, className, ...props }: TypographyProps) {
     <h3
       className={cn(
         "scroll-m-20 text-2xl font-heading font-semibold tracking-tight lg:text-3xl",
-        className
+        className,
       )}
       {...props}
     >

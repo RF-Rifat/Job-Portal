@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
- 
+
 import { AUTH_KEY } from "@/constant/storage.key";
 import { getNewAccessToken, storeToken } from "@/service/auth.service";
 import { removeFromLocalStorage } from "@/utils/local-storage";
@@ -26,7 +26,7 @@ instance.interceptors.request.use(
   function (error) {
     // Do something with request error
     return Promise.reject(error);
-  }
+  },
 );
 
 // Add a response interceptor
@@ -68,7 +68,7 @@ instance.interceptors.response.use(
 
         if (error?.response?.data?.errorMessage) {
           responseObject.errorMessages.push(
-            error?.response?.data?.errorMessage
+            error?.response?.data?.errorMessage,
           );
         }
       }
@@ -76,7 +76,7 @@ instance.interceptors.response.use(
     }
 
     // return Promise.reject(error);
-  }
+  },
 );
 
 export { instance };

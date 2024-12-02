@@ -1,28 +1,28 @@
-import { H1 } from '@/components/ui/typography'
-import { Briefcase, HardHat, Headphones, PieChart } from 'lucide-react'
+import { H1 } from "@/components/ui/typography";
+import { Briefcase, HardHat, Headphones, PieChart } from "lucide-react";
 
 const categories = [
   {
     icon: Briefcase,
-    title: 'Business Development',
-    count: '120+ positions'
+    title: "Business Development",
+    count: "120+ positions",
   },
   {
     icon: HardHat,
-    title: 'Construction',
-    count: '80+ positions'
+    title: "Construction",
+    count: "80+ positions",
   },
   {
     icon: Headphones,
-    title: 'Customer Service',
-    count: '90+ positions'
+    title: "Customer Service",
+    count: "90+ positions",
   },
   {
     icon: PieChart,
-    title: 'Finance',
-    count: '100+ positions'
-  }
-]
+    title: "Finance",
+    count: "100+ positions",
+  },
+];
 
 export default function Categories() {
   return (
@@ -30,9 +30,12 @@ export default function Categories() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-h2 text-textPrimary-light dark:text-textPrimary-dark">
-           <H1>Search by Category</H1> 
+            <H1>Search by Category</H1>
           </h2>
-          <a href="#" className="text-primary dark:text-primary-dark text-bodySmall">
+          <a
+            href="#"
+            className="text-primary dark:text-primary-dark text-bodySmall"
+          >
             All Categories →
           </a>
         </div>
@@ -54,6 +57,5 @@ export default function Categories() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

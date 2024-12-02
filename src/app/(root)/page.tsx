@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import BackgroundPatterns from "@/components/ui/BackgroundPatterns";
 import HeroLayout from "./Home/hero/HeroLayout";
 import Home from "./Home/Index";

@@ -18,7 +18,8 @@ const ContactInfo = ({ data }: { data: any }) => (
         <div className="grid">
           <span>{data.address.fullAddress}</span>
           <span className="text-sm text-muted-foreground">
-            {data.address.stateOrCity}, {data.address.country} {data.address.zipCode}
+            {data.address.stateOrCity}, {data.address.country}{" "}
+            {data.address.zipCode}
           </span>
         </div>
       </div>

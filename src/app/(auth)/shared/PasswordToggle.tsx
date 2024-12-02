@@ -5,7 +5,10 @@ interface PasswordToggleProps {
   togglePassword: () => void;
 }
 
-const PasswordToggle = ({ showPassword, togglePassword }: PasswordToggleProps) => {
+const PasswordToggle = ({
+  showPassword,
+  togglePassword,
+}: PasswordToggleProps) => {
   return (
     <button
       type="button"
