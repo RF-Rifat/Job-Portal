@@ -20,7 +20,7 @@ export function AuthButtons() {
             <Avatar className=" size-8 cursor-pointer">
               <AvatarImage
                 className="size-8 object-fill"
-                src="https://github.com/shadcn.png"
+                src="/img.jpg"
               />
               <AvatarFallback className="h-7 w-7 text-xs">JP</AvatarFallback>
             </Avatar>

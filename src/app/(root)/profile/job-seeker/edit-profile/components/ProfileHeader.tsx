@@ -8,7 +8,7 @@ export function ProfileHeader() {
     <Card className="border-none shadow-none ">
       <CardHeader className="flex   md:flex-row p-0 items-center gap-4 space-y-5">
         <Avatar className="h-20 w-20">
-          <AvatarImage src="/placeholder.svg" alt="Profile picture" />
+          <AvatarImage src="/img.jpg" alt="Profile picture" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div className="flex-1 text-center md:text-left space-y-1">
