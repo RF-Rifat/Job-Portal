@@ -14,7 +14,7 @@ import {
   Send,
   SmilePlus,
 } from "lucide-react";
-import LenisScroll from "@/context/SmoothScroll";
+// import LenisScroll from "@/context/SmoothScroll";
 import { H2, Paragraph } from "../ui/typography";
 
 const quickActions = [
@@ -34,7 +34,7 @@ export default function ChatBot() {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      <LenisScroll />
+      {/* <LenisScroll /> */}
       <AnimatePresence>
         {isOpen ? (
           <motion.div
