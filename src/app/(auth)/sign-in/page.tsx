@@ -19,7 +19,8 @@ import { UserTypeModal } from "../sign-up/modal/IsCompanyOrJobseekerModal";
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
-  const [SigninAsUser] = useSigninMutation();
+  const [SigninAsUser, { isLoading: isSigninAsUserLoading }] =
+    useSigninMutation();
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -132,6 +133,7 @@ const SignIn = () => {
 
                 <div>
                   <PrimaryButton
+                    isLoading={isSigninAsUserLoading}
                     type="submit"
                     text="Sign in"
                     className="rounded-full h-11 mt-4"
@@ -151,10 +153,7 @@ const SignIn = () => {
       </div>
 
       {/* USER Type modal (jobseeker or company) */}
-      <UserTypeModal
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-      />
+      <UserTypeModal open={modalOpen} onOpenChange={setModalOpen} />
     </div>
   );
 };

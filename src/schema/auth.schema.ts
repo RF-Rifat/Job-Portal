@@ -17,14 +17,14 @@ const signupSchema = z
       .min(8, "Password must be at least 8 characters")
       .regex(
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
-        "Password must contain at least one letter, one number, and one special character."
+        "Password must contain at least one letter, one number, and one special character.",
       ),
     confirmPassword: z.string().min(1, "Confirm password is required"),
     profilePhoto: z.instanceof(
       typeof window !== "undefined" ? FileList : Object,
       {
         message: "Profile picture is required",
-      }
+      },
     ),
     gender: z.enum(["male", "female", "other"], {
       invalid_type_error: "Select your gender",
@@ -42,7 +42,7 @@ const resetPasswordSchema = z
       .min(8, "Password must be at least 8 characters long.")
       .regex(
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
-        "Password must contain at least one letter, one number, and one special character."
+        "Password must contain at least one letter, one number, and one special character.",
       ),
     confirmNewPassword: z.string(),
   })

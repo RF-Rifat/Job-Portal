@@ -4,6 +4,7 @@ import { useAppSelector } from "@/redux/hook";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ProfileDropdown } from "./ProfileDropdown";
+import { DrawerMenu } from "./Drawer";
 
 export function AuthButtons() {
   const user = useAppSelector(selectUser);
@@ -12,6 +13,7 @@ export function AuthButtons() {
   return (
     <div className="flex items-center gap-2">
       {/* Sign In Button */}
+      <DrawerMenu/>
       {user ? (
         <ProfileDropdown
           Trigger={
@@ -34,6 +36,7 @@ export function AuthButtons() {
           Sign In
         </Button>
       )}
+
     </div>
   );
 }

@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
-const FadeUp = ({ children, className='' }: { children: ReactNode, className?:string }) => {
+const FadeUp = ({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   return (
     <motion.div
       className={`${className} text-xl text-gray-500 max-w-2xl mx-auto`}

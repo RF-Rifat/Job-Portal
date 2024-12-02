@@ -18,7 +18,7 @@ export function Navbar() {
     <nav className="hidden items-center gap-6 md:flex">
       {/* Dropdown Menu: Resources */}
 
-      {( !user?.role || user?.role === USER_ROLE.COMPANY) && (
+      {(!user?.role || user?.role === USER_ROLE.COMPANY) && (
         <Link
           href="/pricing"
           className="text-base font-medium text-muted-foreground hover:text-foreground"
@@ -32,7 +32,10 @@ export function Navbar() {
           Resources
           <ChevronDown className="h-4 w-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuContent
+          align="end"
+          className="w-48 bg-[white] shadow-none"
+        >
           <DropdownMenuItem asChild>
             <Link href="/faq" className="w-full">
               Job Title FAQ
@@ -80,7 +83,10 @@ export function Navbar() {
             </Button>
           </DropdownMenuTrigger>
         )}
-        <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuContent
+          align="end"
+          className="w-48 bg-[white] shadow-none"
+        >
           <DropdownMenuItem asChild>
             <Link href="/post-job" className="w-full">
               Post a New Job

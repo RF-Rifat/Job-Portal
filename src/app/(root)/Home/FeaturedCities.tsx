@@ -1,37 +1,37 @@
 const cities = [
   {
-    name: 'San Francisco, CA',
-    jobs: '1,234 jobs'
+    name: "San Francisco, CA",
+    jobs: "1,234 jobs",
   },
   {
-    name: 'New York, NY',
-    jobs: '2,456 jobs'
+    name: "New York, NY",
+    jobs: "2,456 jobs",
   },
   {
-    name: 'Los Angeles, CA',
-    jobs: '1,789 jobs'
+    name: "Los Angeles, CA",
+    jobs: "1,789 jobs",
   },
   {
-    name: 'Seattle, WA',
-    jobs: '987 jobs'
+    name: "Seattle, WA",
+    jobs: "987 jobs",
   },
   {
-    name: 'Chicago, IL',
-    jobs: '1,123 jobs'
+    name: "Chicago, IL",
+    jobs: "1,123 jobs",
   },
   {
-    name: 'Boston, MA',
-    jobs: '876 jobs'
+    name: "Boston, MA",
+    jobs: "876 jobs",
   },
   {
-    name: 'Austin, TX',
-    jobs: '654 jobs'
+    name: "Austin, TX",
+    jobs: "654 jobs",
   },
   {
-    name: 'Denver, CO',
-    jobs: '543 jobs'
-  }
-]
+    name: "Denver, CO",
+    jobs: "543 jobs",
+  },
+];
 
 export default function FeaturedCities() {
   return (
@@ -47,8 +47,10 @@ export default function FeaturedCities() {
               className="group relative h-48 rounded-lg overflow-hidden"
             >
               <div className="absolute inset-0 bg-primary/10 dark:bg-primary-dark/10 group-hover:bg-primary/20 dark:group-hover:bg-primary-dark/20 transition-colors" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background-dark/
-50 to-transparent">
+              <div
+                className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background-dark/
+50 to-transparent"
+              >
                 <h3 className="text-h3 text-textPrimary-light dark:text-textPrimary-dark mb-1">
                   {city.name}
                 </h3>
@@ -61,6 +63,5 @@ export default function FeaturedCities() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

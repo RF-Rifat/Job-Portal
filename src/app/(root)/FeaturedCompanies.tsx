@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { H2 } from "@/components/ui/typography"
-import Image from "next/image"
-import { useEffect, useState } from "react"
+import { Card, CardContent } from "@/components/ui/card";
+import { H2 } from "@/components/ui/typography";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const companies = [
   { name: "AutoCare Plus", logo: "/placeholder.svg?height=40&width=120" },
@@ -12,15 +12,15 @@ const companies = [
   { name: "Elite Auto", logo: "/placeholder.svg?height=40&width=120" },
   { name: "MasterMech", logo: "/placeholder.svg?height=40&width=120" },
   // Add more companies as needed
-]
+];
 
 export function FeaturedCompanies() {
-  const [duplicatedCompanies, setDuplicatedCompanies] = useState(companies)
+  const [duplicatedCompanies, setDuplicatedCompanies] = useState(companies);
 
   useEffect(() => {
     // Duplicate the companies array for seamless infinite scroll
-    setDuplicatedCompanies([...companies, ...companies])
-  }, [])
+    setDuplicatedCompanies([...companies, ...companies]);
+  }, []);
 
   return (
     <section className="py-12 overflow-hidden">
@@ -46,6 +46,5 @@ export function FeaturedCompanies() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-
