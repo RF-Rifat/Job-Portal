@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { User, Settings, CreditCard, LogOut, Menu } from "lucide-react";
+import { LogOut, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,

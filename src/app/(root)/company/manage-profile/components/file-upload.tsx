@@ -13,7 +13,7 @@ interface FileUploadProps {
   className?: string
 }
 
-export function FileUpload({ name, value, onChange, className }: FileUploadProps) {
+export function FileUpload({ name, onChange, className }: FileUploadProps) {
   const [preview, setPreview] = useState<string | null>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
