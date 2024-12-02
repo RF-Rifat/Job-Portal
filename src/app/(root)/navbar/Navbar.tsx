@@ -65,7 +65,7 @@ export function Navbar() {
       ) : (
         user?.role === USER_ROLE.COMPANY && (
           <Button variant="outline" size="default" asChild>
-            <Link href="/talents">Find Talents</Link>
+            <Link href="/company/skillsearch">Find Talents</Link>
           </Button>
         )
       )}
