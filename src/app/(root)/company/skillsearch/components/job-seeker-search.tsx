@@ -2,29 +2,61 @@
 
 import * as React from 'react'
 import { JobSeekerProfile } from '@/types/job-seeker'
-import SearchBar from '@/components/search-bar'
-import FilterAside from '@/components/filter-aside'
-import ProfileGrid from '@/components/profile-grid'
+import FilterAside from './filter-aside'
+import SearchBar from './search-bar'
+import ProfileGrid from './profile-grid'
+
 
 const mockProfiles: JobSeekerProfile[] = [
   {
-    photo: '/placeholder.svg',
-    jobTitle: 'Full Stack Developer',
-    skills: ['React', 'Node.js', 'TypeScript', 'MongoDB'],
-    experienceLevel: 'Senior',
+    photo: "/img.jpg",
+    jobTitle: "Full Stack Developer",
+    skills: ["React", "Node.js", "TypeScript"],
+    experienceLevel: "Entry",
     hourlyPayInUSD: 45,
-    locationPreference: 'Remote',
+    locationPreference: "Remote",
     education: {
       educationLevel: "Bachelor's Degree",
-      fieldOfStudy: 'Computer Science'
+      fieldOfStudy: "Computer Science",
     },
     profileCompletionPercentage: 85,
     additionalDetails: {
-      lastActive: '1 week or less'
-    }
+      lastActive: "1 week or less",
+    },
   },
-  // Add more mock profiles as needed
-]
+  {
+    photo: "/img.jpg",
+    jobTitle: "Digital Marketing Specialist",
+    skills: ["SEO", "Social Media", "Content Writing"],
+    experienceLevel: "Senior",
+    hourlyPayInUSD: 45,
+    locationPreference: "Onsite",
+    education: {
+      educationLevel: "Bachelor's Degree",
+      fieldOfStudy: "Computer Science",
+    },
+    profileCompletionPercentage: 85,
+    additionalDetails: {
+      lastActive: "1 week or less",
+    },
+  },
+  {
+    photo: "/img.jpg",
+    jobTitle: "SEO Specialist",
+    skills: ["SEO", "Social Media", "Content Writing"],
+    experienceLevel: "Senior",
+    hourlyPayInUSD: 45,
+    locationPreference: "Hybrid",
+    education: {
+      educationLevel: "Bachelor's Degree",
+      fieldOfStudy: "Computer Science",
+    },
+    profileCompletionPercentage: 85,
+    additionalDetails: {
+      lastActive: "1 week or less",
+    },
+  },
+];
 
 export default function JobSeekerSearch() {
   const [searchQuery, setSearchQuery] = React.useState('')

@@ -1,4 +1,4 @@
-import JobSeekerSearch from '@/components/job-seeker-search'
+import JobSeekerSearch from "./components/job-seeker-search";
 
 export default function Home() {
   return (

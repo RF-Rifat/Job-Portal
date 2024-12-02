@@ -1,5 +1,6 @@
 import { JobSeekerProfile } from '@/types/job-seeker'
-import ProfileCard from '@/components/profile-card'
+import ProfileCard from './profile-card'
+
 
 interface ProfileGridProps {
   profiles: JobSeekerProfile[]
