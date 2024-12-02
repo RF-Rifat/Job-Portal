@@ -5,17 +5,15 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import HeroSearchBar from "./HeroSearchBar";
+import { useAppSelector } from "@/redux/hook";
+import { selectUser } from "@/redux/features/auth/authSlice";
 
 const SearchSection = () => {
   const router = useRouter();
   const [jobSearch, setJobSearch] = useState("");
   const [talentSearch, setTalentSearch] = useState("");
-
-  // Simulated user state
-  const user = {
-    role: "company", 
-  };
-
+  const user = useAppSelector(selectUser);
+ 
   const handleSearch = () => {
     let searchQuery = "/";
     if (jobSearch.trim()) {

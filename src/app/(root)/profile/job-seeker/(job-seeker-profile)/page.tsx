@@ -8,8 +8,9 @@ const Skills = dynamic(() => import("./compoents/Skills"));
 const Experience = dynamic(() => import("./compoents/Experiences"));
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
 import BackgroundBlob from "@/shared/ui/BackgroundBlob";
+import AdditionalUserInfo from "./compoents/AdditionalUserInfo";
+import BackgroundDataCheck from "./compoents/BackgroundDataCheck";
 
 const profileData: any = {
   photo: "/profile/profile_1.jpg",
@@ -85,14 +86,19 @@ const profileData: any = {
 
 const ProfilePage = () => {
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8 !pt-11 -z-10 relative">
-      <div className="mx-auto max-w-4xl space-y-8">
-      <BackgroundBlob />
+    <div className="min-h-screen bg-background p-4 md:p-8 !pt-11 z-10 relative">
+      <div className="mx-auto max-w-4xl bg-white p-5 space-y-8">
+        <BackgroundBlob />
         <ProfileHeader data={profileData} />
-        <Tabs defaultValue="timeline" className="w-full">
+        <Tabs defaultValue="timeline" className="w-full  ">
           <TabsList>
-            <TabsTrigger value="timeline">Timeline</TabsTrigger>
-            <TabsTrigger value="about">About</TabsTrigger>
+            <TabsTrigger value="timeline" className="cursor-pointer">
+              Timeline
+            </TabsTrigger>
+            <TabsTrigger value="about" className="cursor-pointer">
+              About
+            </TabsTrigger>
+            <TabsTrigger value="background">Background Check</TabsTrigger>
           </TabsList>
           <TabsContent value="timeline" className="mt-6">
             <div className="grid gap-6">
@@ -102,15 +108,12 @@ const ProfilePage = () => {
             </div>
           </TabsContent>
           <TabsContent value="about" className="mt-6">
-            <Card className="shadow-none">
-              <CardContent className="pt-6">
-                <p>Additional information about the profile would go here.</p>
-              </CardContent>
-            </Card>
+            <AdditionalUserInfo />
+          </TabsContent>
+          <TabsContent value="background" className="mt-6">
+            <BackgroundDataCheck />
           </TabsContent>
         </Tabs>
-
-        
       </div>
     </div>
   );

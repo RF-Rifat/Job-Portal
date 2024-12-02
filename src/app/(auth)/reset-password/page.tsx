@@ -1,14 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import JPForm from "@/shared/form/JPForm";
 import JPInput from "@/shared/form/JPInput";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,6 +14,7 @@ import {
   useResetPasswordMutation,
 } from "@/redux/features/auth/authApi";
 import { useRouter } from "next/navigation";
+import ReusableOTP from "@/shared/auth/ReusableOTP";
 
 const emailSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -28,7 +23,7 @@ const emailSchema = z.object({
 const ResetPassword = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
-  const [otpValue, setOtpValue] = useState("");
+  // const [otpValue, setOtpValue] = useState("");
   const [otp, setOtp] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -36,7 +31,7 @@ const ResetPassword = () => {
 
   // API call
   const [forgotPassword] = useForgotPasswordMutation();
-  const [resetPassword] = useResetPasswordMutation();
+  const [resetPassword,{isLoading:isResetPasswordLoading}] = useResetPasswordMutation();
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () =>
@@ -59,14 +54,6 @@ const ResetPassword = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(otpValue);
-    console.log(otpValue.length);
-    if (otpValue.length === 6) {
-      setOtp(otpValue);
-      setStep(3);
-    }
-  }, [otpValue]);
 
   const onSubmitNewPassword = async (data: any) => {
     if (data.password !== data.confirmPassword) {
@@ -88,7 +75,6 @@ const ResetPassword = () => {
       });
 
       
-      console.log(response)
       if (response?.data?.success) {
         router.push("/sign-in");
         toast({
@@ -102,6 +88,13 @@ const ResetPassword = () => {
         title: error?.message || "Something went wrong",
       });
     }
+  };
+
+
+
+  const handleOtpComplete = (otp: string) => {
+    setOtp(otp)
+    setStep(3); 
   };
 
   return (
@@ -144,23 +137,25 @@ const ResetPassword = () => {
           )}
 
           {step === 2 && (
-            <InputOTP
-              className="flex justify-center w-full"
-              maxLength={6}
-              pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-              onChange={(otp: string) => {
-                setOtpValue(otp);
-              }}
-            >
-              <InputOTPGroup>
-                <InputOTPSlot className="ml-4" index={0} />
-                <InputOTPSlot className="ml-4" index={1} />
-                <InputOTPSlot className="ml-4" index={2} />
-                <InputOTPSlot className="ml-4" index={3} />
-                <InputOTPSlot className="ml-4" index={4} />
-                <InputOTPSlot className="ml-4" index={5} />
-              </InputOTPGroup>
-            </InputOTP>
+            // <InputOTP
+            //   className="flex justify-center w-full"
+            //   maxLength={6}
+            //   pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
+            //   onChange={(otp: string) => {
+            //     setOtpValue(otp);
+            //   }}
+            // >
+            //   <InputOTPGroup>
+            //     <InputOTPSlot className="ml-4" index={0} />
+            //     <InputOTPSlot className="ml-4" index={1} />
+            //     <InputOTPSlot className="ml-4" index={2} />
+            //     <InputOTPSlot className="ml-4" index={3} />
+            //     <InputOTPSlot className="ml-4" index={4} />
+            //     <InputOTPSlot className="ml-4" index={5} />
+            //   </InputOTPGroup>
+            // </InputOTP>
+
+            <ReusableOTP length={6}  onComplete={handleOtpComplete} />
           )}
 
           {step === 3 && (
@@ -193,6 +188,7 @@ const ResetPassword = () => {
 
               <div>
                 <PrimaryButton
+                  isLoading={isResetPasswordLoading}
                   type="submit"
                   text="reset password"
                   className="h-11 mt-2"

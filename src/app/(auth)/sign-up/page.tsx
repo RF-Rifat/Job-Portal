@@ -16,7 +16,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import verifyToken from "@/helper/auth/VerifyToken";
 import { useAppDispatch } from "@/redux/hook";
 import { setUser } from "@/redux/features/auth/authSlice";
-import { useSignupAsCompanyMutation, useSignupAsJobSeekerMutation } from "@/redux/features/auth/authApi";
+import {
+  useSignupAsCompanyMutation,
+  useSignupAsJobSeekerMutation,
+} from "@/redux/features/auth/authApi";
+
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +29,7 @@ const SignUp = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const search = useSearchParams();
-  const userType = search.get('userType');
+  const userType = search.get("userType");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -34,8 +38,10 @@ const SignUp = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const [signupAsJobseeker] = useSignupAsJobSeekerMutation();
-  const [signupAsCompany] = useSignupAsCompanyMutation();
+  const [signupAsJobseeker, { isLoading: isJobSeekerSignupLoading }] =
+    useSignupAsJobSeekerMutation();
+  const [signupAsCompany, { isLoading: isCompanySignupLoading }] =
+    useSignupAsCompanyMutation();
 
   const onSignupSubmit = async (data: any) => {
     if (data.password !== data.confirmPassword) {
@@ -43,13 +49,17 @@ const SignUp = () => {
       return;
     }
     if (!termsChecked) {
-      toast({ title: "You must agree to the terms and conditions to sign up.", duration: 2000 });
+      toast({
+        title: "You must agree to the terms and conditions to sign up.",
+        duration: 2000,
+      });
       return;
     }
     delete data.confirmPassword;
 
     try {
-      const signup = userType === "company" ? signupAsCompany : signupAsJobseeker;
+      const signup =
+        userType === "company" ? signupAsCompany : signupAsJobseeker;
       const response: any = await signup(data);
       if (response.data.success) {
         const { accessToken } = response.data.data;
@@ -59,7 +69,10 @@ const SignUp = () => {
         toast({ title: "Successfully signed in", duration: 2000 });
       }
     } catch (error: any) {
-      toast({ title: error?.message || "Something went wrong", duration: 2000 });
+      toast({
+        title: error?.message || "Something went wrong",
+        duration: 2000,
+      });
     }
   };
 
@@ -68,8 +81,12 @@ const SignUp = () => {
       <div className="min-h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
           <AuthFormHeader
-            title={`Sign Up as ${userType === "company" ? "Company" : "Job-seeker"}`}
-            description={`Create your ${userType === "company" ? "Company" : "Job-seeker"} account now to  get started.`}
+            title={`Sign Up as ${
+              userType === "company" ? "Company" : "Job-seeker"
+            }`}
+            description={`Create your ${
+              userType === "company" ? "Company" : "Job-seeker"
+            } account now to  get started.`}
           />
 
           <div className="w-full">
@@ -132,6 +149,9 @@ const SignUp = () => {
                 </div>
                 <div>
                   <PrimaryButton
+                    isLoading={
+                      isJobSeekerSignupLoading || isCompanySignupLoading
+                    }
                     type="submit"
                     text="Sign up"
                     className="rounded-full h-11 mt-4"
@@ -153,4 +173,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
